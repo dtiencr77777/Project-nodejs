@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 //  Hiển thị ảnh sản phẩm
 const multer = require("multer");
-const upload = multer({ dest: "./public/uploads/" });
+// const upload = multer({ dest: "./public/uploads/" });
+const storageMulter = require("../../helpers/storageMulter");
+const upload = multer({ storage: storageMulter() });
 
 const controler = require("../../controllers/admin/products.controller");
 
