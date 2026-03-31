@@ -134,6 +134,9 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
+  //  phần cập nhật ảnh sản phẩm
+  console.log(req.file);
+  req.body.thumbnail = `/uploads/${req.file.filename}`;
   const product = new Product(req.body);
   await product.save();
   // console.log(product);
