@@ -10,3 +10,10 @@ hiển thị thông báo:
 npm i express-flash
 npm i express-session
 npm i cookie-parser
+
+
+hiển thị slug
+npm i mongoose-slug-updater 
+
+tải ảnh lên
+npm i multer
