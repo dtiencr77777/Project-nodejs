@@ -78,8 +78,14 @@ block main
         type="file"
         class="form-control-file"
         accept="image/*"
-
+        upload-image-input
       )
+      img(
+        src=""
+        upload-image-preview
+        class="image-preview"
+      )
+
 
     div(class="form-group")
       label(for="position") Vị trí
@@ -119,5 +125,5 @@ block main
         class="btn btn-primary"
       ) Tạo mới
 
-      
-  script(src="/admin/js/product.js")
+
+

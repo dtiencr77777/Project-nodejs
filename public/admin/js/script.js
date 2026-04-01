@@ -1,4 +1,3 @@
-// console.log("Hello World!");
 // BUTTON ACTIVE
 const buttonStatus = document.querySelectorAll("[button-status]");
 if (buttonStatus.length > 0) {
@@ -71,3 +70,21 @@ if (showAlert) {
   });
 }
 //end show alert
+
+// upload image preview
+const uploadImage = document.querySelector("[upload-image]");
+if (uploadImage) {
+  const uploadImageInput = uploadImage.querySelector("[upload-image-input]");
+  const uploadImagePreview = uploadImage.querySelector(
+    "[upload-image-preview]",
+  );
+
+  uploadImageInput.addEventListener("change", (e) => {
+    console.log(e);
+    const file = e.target.files[0];
+    // console.log(file);
+    if (file) {
+      uploadImagePreview.src = URL.createObjectURL(file);
+    }
+  });
+}
