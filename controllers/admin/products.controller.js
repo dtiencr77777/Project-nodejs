@@ -124,6 +124,13 @@ module.exports.create = (req, res) => {
 
 // 6 POST : admin/products/create
 module.exports.createPost = async (req, res) => {
+  // validate dữ liệu
+  if (!req.body.title) {
+    req.flash("error", "Vui lòng nhập tên sản phẩm");
+    res.redirect("back");
+    return;
+  }
+  //
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
@@ -136,7 +143,9 @@ module.exports.createPost = async (req, res) => {
   }
   //  phần cập nhật ảnh sản phẩm
   console.log(req.file);
-  req.body.thumbnail = `/uploads/${req.file.filename}`;
+  if (req.file) {
+    req.body.thumbnail = `/uploads/${req.file.filename}`;
+  }
   const product = new Product(req.body);
   await product.save();
   // console.log(product);
