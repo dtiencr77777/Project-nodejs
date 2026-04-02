@@ -12,6 +12,8 @@ block main
     h1.mb-3 Trang Sản Phẩm Admin
     p Đây là trang quản lý sản phẩm dành cho quản trị viên.
     +alert-success(5000)
+    +alert-error(5000)
+
 
     // Bộ lọc + tìm kiếm
     .card.mb-3
@@ -118,4 +120,6 @@ block main
       id="form-delete-item"
       data-path=`/admin/products/delete`
     )
-
+    script(src="/admin/js/productStatus.js")
+    script(src="/admin/js/productMulti.js")
+    script(src="/admin/js/productDelete.js")

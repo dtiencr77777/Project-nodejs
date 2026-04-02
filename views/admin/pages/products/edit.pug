@@ -4,10 +4,9 @@ include ../../mixins/alert.pug
 block main
   +alert-error(5000)
   h1(class="mb-4") Edit products
-
   form(
     action=`${prefixAdmin}/products/edit`
-    id="form-create-product"
+    id="form-edit-product"
     method="POST"
     enctype="multipart/form-data"
   )
@@ -19,6 +18,7 @@ block main
         id="title"
         name="title"
         required
+        value = productEditId.title
       )
 
 
@@ -29,7 +29,8 @@ block main
         id="desc"
         name="description"
         rows="5"
-      )
+
+      ) #{productEditId.description}
 
     div(class="form-group")
       label(for="price") Giá
@@ -38,7 +39,7 @@ block main
         class="form-control"
         id="price"
         name="price"
-        value="0"
+        value=productEditId.price
         min="0"
       )
 
@@ -49,7 +50,7 @@ block main
         class="form-control"
         id="discount"
         name="discountPercentage"
-        value="0"
+        value=productEditId.discountPercentage
         min="0"
       )
 
@@ -61,7 +62,7 @@ block main
         class="form-control"
         id="stock"
         name="stock"
-        value="0"
+        value=productEditId.stock
         min="0"
       )
 
@@ -81,7 +82,7 @@ block main
         upload-image-input
       )
       img(
-        src=""
+        src=productEditId.thumbnail
         upload-image-preview
         class="image-preview"
       )
@@ -96,7 +97,8 @@ block main
         name="position"
         placeholder="Tự động tăng"
         min="1"
-      )
+        value =productEditId.position
+      ) 
     div(class="form-group form-check form-check-inline")
       input(
         type="radio"
@@ -104,7 +106,7 @@ block main
         id="statusActive"
         name="status"
         value="active"
-        checked
+        checked=(productEditId.status == "active"? true : false)
       )
       lable(for="statusActive" class="form-check-lable") Hoạt động
 
@@ -115,7 +117,8 @@ block main
         id="statusActive"
         name="status"
         value="inactive"
-        checked
+        checked=(productEditId.status == "inactive" ? true : false)
+
       )
       lable(for="statusActive" class="form-check-lable") Dừng Hoạt động
 

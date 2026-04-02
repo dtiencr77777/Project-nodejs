@@ -146,8 +146,21 @@ module.exports.createPost = async (req, res) => {
 };
 
 // 7 GET : admin/products/edit
-module.exports.edit = (req, res) => {
-  res.render("admin/pages/products/edit.pug", {
-    pageTitle: "Edit Products",
-  });
+module.exports.edit = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    let find = {
+      _id: req.params.id,
+    };
+
+    const productEditId = await Product.findOne(find);
+    // console.log(productEditId);
+    res.render("admin/pages/products/edit.pug", {
+      pageTitle: "Edit Products",
+      productEditId: productEditId,
+    });
+  } catch (error) {
+    req.flash("error", "Sản phẩm không tồn tại");
+    res.redirect("/admin/products");
+  }
 };
