@@ -8,6 +8,9 @@ const upload = multer({ storage: storageMulter() });
 
 const controler = require("../../controllers/admin/products.controller");
 
+// validate dữ liệu
+const validate = require("./../../validates/product.validate");
+
 router.get("/", controler.index);
 
 router.patch("/change-status/:status/:id", controler.changeStatus);
@@ -18,6 +21,11 @@ router.delete("/delete/:id", controler.deleteItem);
 // tạo sản phẩm
 router.get("/create", controler.create);
 // xử lý tạo sản phẩm
-router.post("/create", upload.single("thumbnail"), controler.createPost);
+router.post(
+  "/create",
+  upload.single("thumbnail"),
+  validate.createProducts,
+  controler.createPost,
+);
 
 module.exports = router;
