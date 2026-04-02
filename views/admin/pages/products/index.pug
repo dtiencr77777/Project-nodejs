@@ -91,7 +91,9 @@ block main
                         button-change-status
                       ) Không hoạt động
                   td
-                    a.btn.btn-warning.btn-sm(href="#") Sửa
+                    a.btn.btn-warning.btn-sm(
+                      href=`${prefixAdmin}/products/edit/${item.id}`
+                      ) Sửa
                     a.btn.btn-danger.btn-sm.ml-1(
                       href="#"
                       data-id=item.id
@@ -116,6 +118,4 @@ block main
       id="form-delete-item"
       data-path=`/admin/products/delete`
     )
-    script(src="/admin/js/productStatus.js")
-    script(src="/admin/js/productMulti.js")
-    script(src="/admin/js/productDelete.js")
+

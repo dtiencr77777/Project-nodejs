@@ -144,3 +144,10 @@ module.exports.createPost = async (req, res) => {
   // console.log(product);
   res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
+
+// 7 GET : admin/products/edit
+module.exports.edit = (req, res) => {
+  res.render("admin/pages/products/edit.pug", {
+    pageTitle: "Edit Products",
+  });
+};

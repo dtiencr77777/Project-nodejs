@@ -27,5 +27,8 @@ router.post(
   validate.createProducts,
   controler.createPost,
 );
+// edit san pham
+
+router.get("/edit/:id", controler.edit);
 
 module.exports = router;
