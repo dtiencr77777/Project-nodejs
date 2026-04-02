@@ -127,7 +127,8 @@ module.exports.createPost = async (req, res) => {
   // validate dữ liệu
   if (!req.body.title) {
     req.flash("error", "Vui lòng nhập tên sản phẩm");
-    res.redirect("back");
+    res.redirect(req.get("Referrer") || "/");
+
     return;
   }
   //
