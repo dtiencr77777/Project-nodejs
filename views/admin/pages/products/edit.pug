@@ -3,9 +3,10 @@ include ../../mixins/alert.pug
 
 block main
   +alert-error(5000)
+  div #{productEditId.id}
   h1(class="mb-4") Edit products
   form(
-    action=`${prefixAdmin}/products/edit`
+    action=`${prefixAdmin}/products/edit/${productEditId.id}?_method=PATCH`
     id="form-edit-product"
     method="POST"
     enctype="multipart/form-data"

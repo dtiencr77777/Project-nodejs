@@ -30,5 +30,11 @@ router.post(
 // edit san pham
 
 router.get("/edit/:id", controler.edit);
+router.patch(
+  "/edit/:id",
+  upload.single("thumbnail"),
+  validate.createProducts,
+  controler.editPatch,
+);
 
 module.exports = router;

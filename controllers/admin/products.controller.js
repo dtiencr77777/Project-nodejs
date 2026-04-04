@@ -148,7 +148,7 @@ module.exports.createPost = async (req, res) => {
 // 7 GET : admin/products/edit
 module.exports.edit = async (req, res) => {
   try {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     let find = {
       _id: req.params.id,
     };
@@ -162,5 +162,31 @@ module.exports.edit = async (req, res) => {
   } catch (error) {
     req.flash("error", "Sản phẩm không tồn tại");
     res.redirect("/admin/products");
+  }
+};
+
+// 7 Patch : admin/products/edit
+module.exports.editPatch = async (req, res) => {
+  // console.log(req.body);
+  //   console.log(id);
+  const id = req.params.id;
+
+  req.body.price = parseInt(req.body.price);
+  req.body.discountPercentage = parseInt(req.body.discountPercentage);
+  req.body.stock = parseInt(req.body.stock);
+
+  req.body.position = parseInt(req.body.position);
+  //  phần cập nhật ảnh sản phẩm
+
+  if (req.file) {
+    req.body.thumbnail = `/uploads/${req.file.filename}`;
+  }
+  try {
+    await Product.updateOne({ _id: id }, req.body);
+    req.flash("success", "cập nhật sản phẩm thành công");
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
+  } catch (error) {
+    req.flash("error", "cập nhật sản phẩm thất bại");
+    res.redirect(req.get("Referrer") || "/");
   }
 };
