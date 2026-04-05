@@ -36,5 +36,8 @@ router.patch(
   validate.createProducts,
   controler.editPatch,
 );
+//  detail sản phẩm
+
+router.get("/detail/:id", controler.detail);
 
 module.exports = router;

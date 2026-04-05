@@ -190,3 +190,22 @@ module.exports.editPatch = async (req, res) => {
     res.redirect(req.get("Referrer") || "/");
   }
 };
+
+// ========================================================================
+
+// 8 : admin/products/detail
+module.exports.detail = async (req, res) => {
+  try {
+    // console.log(req.params.id);
+    let find = {
+      _id: req.params.id,
+    };
+
+    const productEditId = await Product.findOne(find);
+    // console.log(productEditId);
+    res.render("admin/pages/products/detail.pug", {
+      pageTitle: "Detail Products",
+      productEditId: productEditId,
+    });
+  } catch (error) {}
+};
