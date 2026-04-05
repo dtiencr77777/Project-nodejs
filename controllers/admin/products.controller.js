@@ -201,11 +201,12 @@ module.exports.detail = async (req, res) => {
       _id: req.params.id,
     };
 
-    const productEditId = await Product.findOne(find);
-    // console.log(productEditId);
+    const productDetail = await Product.findOne(find);
+    console.log(productDetail);
+
     res.render("admin/pages/products/detail.pug", {
-      pageTitle: "Detail Products",
-      productEditId: productEditId,
+      pageTitle: productDetail.title,
+      product: productDetail,
     });
   } catch (error) {}
 };
