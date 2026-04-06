@@ -208,5 +208,8 @@ module.exports.detail = async (req, res) => {
       pageTitle: productDetail.title,
       product: productDetail,
     });
-  } catch (error) {}
+  } catch (error) {
+    req.flash("error", "Sản phẩm không tồn tại");
+    res.redirect("/admin/products");
+  }
 };

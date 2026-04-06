@@ -11,7 +11,22 @@ module.exports.product = async (req, res) => {
     products: newProducts,
   });
 };
-
+//  2 GET : product/:slug
 module.exports.slug = async (req, res) => {
-  res.send("slug");
+  const slug = req.params.slug;
+
+  try {
+    let find = {
+      // deteled: false,
+      // status:"active"
+      slug: slug,
+    };
+    const product = await Product.findOne(find);
+    res.render("client/pages/products/detail.pug", {
+      pageTitle: "Detail Page",
+      product: product,
+    });
+  } catch (error) {
+    res.redirect("/products");
+  }
 };
