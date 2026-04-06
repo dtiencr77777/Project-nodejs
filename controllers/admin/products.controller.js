@@ -202,7 +202,7 @@ module.exports.detail = async (req, res) => {
     };
 
     const productDetail = await Product.findOne(find);
-    console.log(productDetail);
+    // console.log(productDetail);
 
     res.render("admin/pages/products/detail.pug", {
       pageTitle: productDetail.title,

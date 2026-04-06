@@ -11,3 +11,7 @@ module.exports.product = async (req, res) => {
     products: newProducts,
   });
 };
+
+module.exports.slug = async (req, res) => {
+  res.send("slug");
+};

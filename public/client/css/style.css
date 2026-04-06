@@ -92,3 +92,7 @@
 .card .card-body .table .btn {
   margin-right: 5px;
 }
+
+.product-item a {
+  text-decoration: none;
+}
