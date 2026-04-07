@@ -17,3 +17,9 @@ npm i mongoose-slug-updater
 
 tải ảnh lên
 npm i multer
+
+kết nối db online 
+npm install mongodb
+
+ khi kết nối chú ý đúng :Collection Name
+
