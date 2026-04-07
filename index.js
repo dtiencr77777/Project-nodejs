@@ -25,7 +25,7 @@ app.use(methodOverride("_method"));
 const port = process.env.PORT;
 
 //  4 static file - css, js, image
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 
 // 5 Mongoose - kết nối với mongodb qua file config/database.js
 const database = require("./config/database");
@@ -35,7 +35,7 @@ database.connect();
 app.locals.prefixAdmin = systemconfig.prefixAdmin;
 
 //1. dùng pug làm view engine
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 // 2. dùng router
