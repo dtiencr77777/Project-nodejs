@@ -3,13 +3,25 @@ const router = express.Router();
 //  Hiển thị ảnh sản phẩm
 const multer = require("multer");
 // const upload = multer({ dest: "./public/uploads/" });
-const storageMulter = require("../../helpers/storageMulter");
-const upload = multer({ storage: storageMulter() });
 
-const controler = require("../../controllers/admin/products.controller");
+//  cloudinary
+// const storageMulter = require("../../helpers/storageMulter");
+// const upload = multer({ storage: storageMulter() });
+const upload = multer();
+
+const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
+cloudinary.config({
+  cloud_name: "dcoujkven",
+  api_key: "558121248779264",
+  api_secret: "YnRpvuwz74HVJesDSjkG41CaifE", // Click 'View API Keys' above to copy your API secret
+});
+//end  cloudinary
 
 // validate dữ liệu
 const validate = require("./../../validates/product.validate");
+// controller
+const controler = require("../../controllers/admin/products.controller");
 
 router.get("/", controler.index);
 
