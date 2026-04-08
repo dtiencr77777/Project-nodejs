@@ -53,10 +53,15 @@ router.post(
 
     async function upload(req) {
       let result = await streamUpload(req);
-      console.log(result);
+      // console.log(result);
+
+      console.log(result.secure_url);
+      // req.body.thumbnail = result.secure_url;
+      req.body[req.file.fieldname] = result.secure_url;
     }
 
     upload(req);
+    next();
   },
   validate.createProducts,
   controler.createPost,

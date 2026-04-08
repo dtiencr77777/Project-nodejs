@@ -136,9 +136,11 @@ module.exports.createPost = async (req, res) => {
   }
   //  phần cập nhật ảnh sản phẩm
   console.log(req.file);
-  if (req.file) {
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
+
+  //  xoá khi đã dùng cloudinary
+  // if (req.file) {
+  //   req.body.thumbnail = `/uploads/${req.file.filename}`;
+  // }
   const product = new Product(req.body);
   await product.save();
   // console.log(product);
