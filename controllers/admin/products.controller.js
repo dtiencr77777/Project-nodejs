@@ -30,7 +30,7 @@ module.exports.index = async (req, res) => {
   // 4 sort sản phẩm
   let sort = {};
   if (req.query.sortKey && req.query.sortValue) {
-    sort(req.query.sortKey) = req.query.sortValue;
+    sort[req.query.sortKey] = req.query.sortValue;
   } else {
     sort.position = "desc";
   }
