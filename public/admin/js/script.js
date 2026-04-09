@@ -112,4 +112,16 @@ if (sort) {
     url.searchParams.delete("sortValue");
     window.location.href = url.href;
   });
+
+  // set value select sort
+  const sortKey = url.searchParams.get("sortKey");
+  const sortValue = url.searchParams.get("sortValue");
+  if (sortKey && sortValue) {
+    const stringSort = `${sortKey}-${sortValue}`;
+    console.log(stringSort);
+    const optionSelected = sortSelect.querySelector(
+      `option[value='${stringSort}']`,
+    );
+    optionSelected.selected = true;
+  }
 }
