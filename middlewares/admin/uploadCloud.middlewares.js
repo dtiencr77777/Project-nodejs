@@ -26,7 +26,7 @@ module.exports.uploadCloud = (req, res, next) => {
       let result = await streamUpload(req);
       // console.log(result);
 
-      console.log(result.secure_url);
+      // console.log(result.secure_url);
       // req.body.thumbnail = result.secure_url;
       req.body[req.file.fieldname] = result.secure_url;
       next();

@@ -135,7 +135,7 @@ module.exports.createPost = async (req, res) => {
     req.body.position = parseInt(req.body.position);
   }
   //  phần cập nhật ảnh sản phẩm
-  console.log(req.file);
+  // console.log(req.file);
 
   //  xoá khi đã dùng cloudinary
   // if (req.file) {
