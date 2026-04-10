@@ -1,5 +1,6 @@
 const express = require("express");
 const systemconfig = require("./config/system.js");
+
 require("dotenv").config();
 
 const app = express();
@@ -20,25 +21,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // 7 đè phương thức
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
-
-// 3. dùng dotenv để quản lý biến môi trường - dong PORT trong file .env
-const port = process.env.PORT;
-
-//  4 static file - css, js, image
-app.use(express.static(`${__dirname}/public`));
+// 6 locals Path Admin
+app.locals.prefixAdmin = systemconfig.prefixAdmin;
 
 // 5 Mongoose - kết nối với mongodb qua file config/database.js
 const database = require("./config/database");
 database.connect();
 
-// 6 locals Path Admin
-app.locals.prefixAdmin = systemconfig.prefixAdmin;
+//  4 static file - css, js, image
+app.use(express.static(`${__dirname}/public`));
 
-//1. dùng pug làm view engine
+// 3. dùng dotenv để quản lý biến môi trường - dong PORT trong file .env
+const port = process.env.PORT;
+
+//2. dùng pug làm view engine
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
+// 10 tinymce
+const path = require("path");
 
-// 2. dùng router
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce")),
+);
+// 1. dùng router
 const routerClient = require("./router/client/index.router");
 routerClient(app);
 const routerAdmin = require("./router/admin/index.router");
