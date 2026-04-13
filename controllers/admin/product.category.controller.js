@@ -9,3 +9,8 @@ module.exports.create = (req, res) => {
     pageTitle: "Products-category Create",
   });
 };
+
+//  POST /admin/products-category/create
+module.exports.createPost = (req, res) => {
+  res.send("create Post");
+};
