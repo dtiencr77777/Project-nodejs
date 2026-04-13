@@ -1,7 +1,7 @@
 const systemConfig = require("../../config/system");
 
 const ProductCategory = require("../../models/product-category.model");
-//  GET /admin/products-category
+//1  GET /admin/products-category
 module.exports.index = async (req, res) => {
   let find = {
     deleted: false,
@@ -13,15 +13,21 @@ module.exports.index = async (req, res) => {
   });
 };
 
-//  GET /admin/products-category/create
-module.exports.create = (req, res) => {
+//2  GET /admin/products-category/create
+module.exports.create = async (req, res) => {
+  let find = {
+    deleted: false,
+  };
+
+  const records = await ProductCategory.find(find);
+  console.log(records);
   res.render("admin/pages/product-category/create.pug", {
     pageTitle: "Products-category Create",
+    records: records,
   });
 };
 
-//  POST /admin/products-category/create
-
+//2  POST /admin/products-category/create
 module.exports.createPost = async (req, res) => {
   if (req.body.position == "") {
     const coutProductCategory = await ProductCategory.countDocuments();
