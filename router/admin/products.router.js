@@ -12,7 +12,7 @@ const uploadCloudRouter = require("../../middlewares/admin/uploadCloud.middlewar
 //end  cloudinary
 
 // validate dữ liệu
-const validate = require("./../../validates/product.validate");
+const validate = require("./../../validates/admin/product.validate");
 // controller
 const controler = require("../../controllers/admin/products.controller");
 

@@ -11,6 +11,8 @@ module.exports.create = (req, res) => {
 };
 
 //  POST /admin/products-category/create
-module.exports.createPost = (req, res) => {
-  res.send("create Post");
+
+module.exports.createPost = async (req, res) => {
+  console.log(req.body);
+  res.send("oke");
 };
