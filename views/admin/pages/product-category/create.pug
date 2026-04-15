@@ -38,7 +38,7 @@ block main
         option(value="") -- Chọn danh mục --
         if(records)
           each item in records
-            option(value=item._id) #{item.title}
+            option(value=item.id) #{item.title}
 
     div(class="form-group")
       label(for="desc") Mô tả
