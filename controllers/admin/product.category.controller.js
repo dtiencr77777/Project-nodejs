@@ -22,9 +22,9 @@ module.exports.create = async (req, res) => {
   function createTree(arr, parentId = "") {
     const tree = [];
     arr.forEach((item) => {
-      if (item.parent_id === parentId) {
+      if (item.parent_id == parentId) {
         const newItem = item;
-        const children = createTree(arr, item._id);
+        const children = createTree(arr, item.id);
         if (children.length > 0) {
           newItem.children = children;
         }
@@ -40,7 +40,7 @@ module.exports.create = async (req, res) => {
   console.log(newRecords);
   res.render("admin/pages/product-category/create.pug", {
     pageTitle: "Products-category Create",
-    records: records,
+    records: newRecords,
   });
 };
 
