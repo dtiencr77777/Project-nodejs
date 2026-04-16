@@ -40,7 +40,8 @@ block main
         option(value="") -- Chọn danh mục --
         if(records)
           each item in records
-            option(value=item.id) #{item.title}
+            +select-tree(records)
+
 
     div(class="form-group")
       label(for="desc") Mô tả
