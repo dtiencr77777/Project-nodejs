@@ -79,7 +79,7 @@ module.exports.createPost = async (req, res) => {
   res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 };
 
-//3  POST /admin/products-category/edit
+//3  GET /admin/products-category/edit
 module.exports.edit = async (req, res) => {
   const id = req.params.id;
   let find = {
@@ -97,4 +97,15 @@ module.exports.edit = async (req, res) => {
     data: data,
     records: newRecords,
   });
+};
+
+//4  PATCH /admin/products-category/edit
+module.exports.editPatch = async (req, res) => {
+  const id = req.params.id;
+  req.body.position = parseInt(req.body.position);
+  console.log(req.body);
+  await ProductCategory.updateOne({ _id: id }, req.body);
+  req.flash("success", "chỉnh sửa sản phẩm thành công");
+
+  res.redirect(req.get("Referrer") || "/");
 };

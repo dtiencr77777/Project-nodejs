@@ -5,11 +5,11 @@ include ../../mixins/select-tree.pug
 
 
 block main
-  +alert-error(4000)
+  +alert-success(4000)
   h1(class="mb-4") Chỉnh sửa danh mục Sản Phẩm
 
   form(
-    action=`${prefixAdmin}/products-category/create`
+    action=`${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH`
     method="POST"
     enctype="multipart/form-data"
   )
@@ -109,4 +109,4 @@ block main
       button(
         type="submit"
         class="btn btn-primary"
-      ) Tạo mới
+      ) Cập nhật

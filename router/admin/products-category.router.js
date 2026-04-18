@@ -28,5 +28,12 @@ router.post(
 );
 //  chỉnh sửa danh mục
 router.get("/edit/:id", controler.edit);
+router.patch(
+  "/edit/:id",
+  upload.single("thumbnail"),
+  uploadCloudRouter.uploadCloud,
+  validate.createProducts,
+  controler.editPatch,
+);
 
 module.exports = router;
