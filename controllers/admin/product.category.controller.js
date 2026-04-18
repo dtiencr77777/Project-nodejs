@@ -86,9 +86,15 @@ module.exports.edit = async (req, res) => {
     deleted: false,
     _id: id,
   };
+  const records = await ProductCategory.find({
+    deleted: false,
+  });
+  const newRecords = createTreeHelper.tree(records);
+
   const data = await ProductCategory.findOne(find);
   res.render("admin/pages/product-category/edit.pug", {
     pageTitle: "Products-category Edit",
     data: data,
+    records: newRecords,
   });
 };
