@@ -20,7 +20,7 @@ block main
         class="form-control"
         id="title"
         name="title"
-        required
+        value = data.title
       )
 
 
@@ -50,7 +50,7 @@ block main
         id="desc"
         name="description"
         rows="3"
-      )
+      ) #{data.description}
 
 
     div(
@@ -67,7 +67,7 @@ block main
         upload-image-input
       )
       img(
-        sr=""
+        src=data.thumbnail
         upload-image-preview
         class="image-preview"
 
@@ -81,6 +81,7 @@ block main
         name="position"
         placeholder="Tự động tăng"
         min="1"
+        value = data.position
       )
     div(class="form-group form-check form-check-inline")
       input(
@@ -89,7 +90,7 @@ block main
         id="statusActive"
         name="status"
         value="active"
-        checked
+        checked= data.status ==="active" ? true : false
       )
       lable(for="statusActive" class="form-check-lable") Hoạt động
 
@@ -100,7 +101,7 @@ block main
         id="statusActive"
         name="status"
         value="inactive"
-        checked
+        checked= data.status ==="inactive" ? true : false
       )
       lable(for="statusActive" class="form-check-lable") Dừng Hoạt động
 

@@ -81,7 +81,14 @@ module.exports.createPost = async (req, res) => {
 
 //3  POST /admin/products-category/edit
 module.exports.edit = async (req, res) => {
+  const id = req.params.id;
+  let find = {
+    deleted: false,
+    _id: id,
+  };
+  const data = await ProductCategory.findOne(find);
   res.render("admin/pages/product-category/edit.pug", {
     pageTitle: "Products-category Edit",
+    data: data,
   });
 };
