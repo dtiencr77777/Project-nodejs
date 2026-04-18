@@ -26,5 +26,7 @@ router.post(
   validate.createProducts,
   controler.createPost,
 );
+//  chỉnh sửa danh mục
+router.get("/edit/:id", controler.edit);
 
 module.exports = router;

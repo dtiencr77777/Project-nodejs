@@ -78,3 +78,10 @@ module.exports.createPost = async (req, res) => {
   console.log(req.body);
   res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 };
+
+//3  POST /admin/products-category/edit
+module.exports.edit = async (req, res) => {
+  res.render("admin/pages/product-category/edit.pug", {
+    pageTitle: "Products-category Edit",
+  });
+};
