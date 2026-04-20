@@ -113,3 +113,4 @@ module.exports.editPatch = async (req, res) => {
 
   res.redirect(req.get("Referrer") || "/");
 };
+// tự làm các tính năng xoá sản phẩm, xem chi tiết sản phẩn
