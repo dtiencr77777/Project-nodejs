@@ -81,22 +81,26 @@ module.exports.createPost = async (req, res) => {
 
 //3  GET /admin/products-category/edit
 module.exports.edit = async (req, res) => {
-  const id = req.params.id;
-  let find = {
-    deleted: false,
-    _id: id,
-  };
-  const records = await ProductCategory.find({
-    deleted: false,
-  });
-  const newRecords = createTreeHelper.tree(records);
+  try {
+    const id = req.params.id;
+    let find = {
+      deleted: false,
+      _id: id,
+    };
+    const records = await ProductCategory.find({
+      deleted: false,
+    });
+    const newRecords = createTreeHelper.tree(records);
 
-  const data = await ProductCategory.findOne(find);
-  res.render("admin/pages/product-category/edit.pug", {
-    pageTitle: "Products-category Edit",
-    data: data,
-    records: newRecords,
-  });
+    const data = await ProductCategory.findOne(find);
+    res.render("admin/pages/product-category/edit.pug", {
+      pageTitle: "Products-category Edit",
+      data: data,
+      records: newRecords,
+    });
+  } catch (error) {
+    res.redirect(`${systemConfig.prefixAdmin}/products-category`);
+  }
 };
 
 //4  PATCH /admin/products-category/edit
