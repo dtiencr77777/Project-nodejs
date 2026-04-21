@@ -18,6 +18,7 @@ module.exports.create = (req, res) => {
   });
 };
 
+// POST /admin/roles/create
 module.exports.createPost = (req, res) => {
   console.log(req.body);
   const record = new Role(req.body);
@@ -26,6 +27,7 @@ module.exports.createPost = (req, res) => {
   res.redirect("/admin/roles");
 };
 
+// GET /admin/roles/edit/:id
 module.exports.edit = async (req, res) => {
   try {
     const id = req.params.id;
@@ -44,9 +46,21 @@ module.exports.edit = async (req, res) => {
     res.redirect("/admin/roles");
   }
 };
+
+//  PATCH /ADMIN/EDIT/:ID
 module.exports.editPatch = async (req, res) => {
   const id = req.params.id;
   await Role.updateOne({ _id: id }, req.body);
   req.flash("success", "Cập nhật ");
   res.redirect("/admin/roles");
+};
+
+//  GET /ADMIN/PERMISSIONS/
+module.exports.permissions = async (req, res) => {
+  let find = { deleted: false };
+  const records = await Role.find(find);
+  res.render("admin/pages/roles/permissions.pug", {
+    pageTitle: "Phân quyền",
+    records: records,
+  });
 };

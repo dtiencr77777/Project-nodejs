@@ -9,4 +9,6 @@ router.post("/create", controler.createPost);
 router.get("/edit/:id", controler.edit);
 router.patch("/edit/:id", controler.editPatch);
 
+router.get("/permissions", controler.permissions);
+
 module.exports = router;
