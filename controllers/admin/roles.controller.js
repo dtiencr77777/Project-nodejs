@@ -23,7 +23,6 @@ module.exports.createPost = (req, res) => {
   console.log(req.body);
   const record = new Role(req.body);
   record.save();
-  res.send("oke");
   res.redirect("/admin/roles");
 };
 
