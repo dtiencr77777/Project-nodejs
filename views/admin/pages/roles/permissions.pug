@@ -13,6 +13,7 @@ block main
 
     table(
       class="table table-hover table-sm"
+      table-permissions
     )
       thead
         tr
@@ -51,4 +52,6 @@ block main
           each item in records
             td(class="text-center")
               input(type="checkbox")
+
+  script(src="/admin/js/roles.js")
 
