@@ -31,7 +31,18 @@ if (tablePermissions) {
         });
       }
     });
-    console.log(permissionsData);
+    // console.log(permissionsData);
+    if (permissionsData.length > 0) {
+      const formChangePermissions = document.querySelector(
+        "#form-change-permissions",
+      );
+      const inputPermissions = formChangePermissions.querySelector(
+        "input[name='permissions']",
+      );
+      // console.log(inputPermissions);;
+      inputPermissions.value = JSON.stringify(permissionsData);
+      formChangePermissions.submit();
+    }
   });
 }
 // end permissions
