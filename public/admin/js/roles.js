@@ -21,13 +21,17 @@ if (tablePermissions) {
           });
         });
       } else {
-        inputs.forEach((input) => {
+        inputs.forEach((input, index) => {
           const checked = input.checked;
-          console.log(name, checked);
-          console.log("------------");
+          // console.log(name, index, checked);
+          // console.log("------------");
+          if (checked) {
+            permissionsData[index].permissionsData.push(name);
+          }
         });
       }
     });
+    console.log(permissionsData);
   });
 }
 // end permissions
