@@ -63,3 +63,17 @@ module.exports.permissions = async (req, res) => {
     records: records,
   });
 };
+
+//  PATCH /ADMIN/PERMISSIONS/
+module.exports.permissionsPatch = async (req, res) => {
+  // console.log(req.body);
+  const permissions = JSON.parse(req.body.permissions);
+  for (const item of permissions) {
+    await Role.updateOne(
+      { _id: item.id },
+      { permissions: item.permissionsData },
+    );
+  }
+  req.flash("success", "Cập nhật quyền thành công");
+  res.redirect(req.get("Referrer") || "/");
+};

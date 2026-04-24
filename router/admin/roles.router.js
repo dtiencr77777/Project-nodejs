@@ -8,7 +8,9 @@ router.get("/create", controler.create);
 router.post("/create", controler.createPost);
 router.get("/edit/:id", controler.edit);
 router.patch("/edit/:id", controler.editPatch);
-
+// permissions
 router.get("/permissions", controler.permissions);
+
+router.patch("/permissions", controler.permissionsPatch);
 
 module.exports = router;
