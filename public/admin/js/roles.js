@@ -46,3 +46,24 @@ if (tablePermissions) {
   });
 }
 // end permissions
+
+// permissions data default
+const dataReocords = document.querySelector("[data-records]");
+if (dataReocords) {
+  const records = JSON.parse(dataReocords.getAttribute("data-records"));
+  // console.log(records);
+
+  records.forEach((records, index) => {
+    const permissions = records.permissions;
+    permissions.forEach((permissions) => {
+      const row = tablePermissions.querySelector(
+        `[data-name="${permissions}"]`,
+      );
+      const input = row.querySelectorAll("input")[index];
+      // console.log(permissions);
+      input.checked = true;
+    });
+    // console.log("---------");
+  });
+}
+//End permissions data default
