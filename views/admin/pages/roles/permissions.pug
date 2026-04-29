@@ -21,7 +21,7 @@ block main
           each item in records
             th(class="text-center") #{item.title}
       tbody
-        tr(data-name="id")
+        tr(data-name="id" class="d-none")
           td
           each item in records
             td(class="text-center")
@@ -56,6 +56,7 @@ block main
     id = "form-change-permissions"
     method = "POST"
     action =`/admin/roles/permissions?_method=PATCH`
+    class="d-none"
   )
     div(class="form-group")
       input(
