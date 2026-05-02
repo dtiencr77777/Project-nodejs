@@ -9,7 +9,7 @@ const accountschema = new mongoose.Schema(
     email: String,
     password: String,
     token: {
-      type: string,
+      type: String,
       default: generate.generateRamdomString(25),
     },
     phone: Number,
