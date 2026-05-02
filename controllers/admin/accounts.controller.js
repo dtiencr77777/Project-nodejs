@@ -17,3 +17,11 @@ module.exports.create = (req, res) => {
     pageTitle: "Tạo tài khoản",
   });
 };
+
+//  POST /admin/accounts/create
+module.exports.create = async (req, res) => {
+  console.log(req.body);
+  const record = new Account(req.body);
+  await record.save();
+  res.redirect("/admin/accounts");
+};
