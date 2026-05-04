@@ -19,7 +19,7 @@ module.exports.create = (req, res) => {
 };
 
 //  POST /admin/accounts/create
-module.exports.create = async (req, res) => {
+module.exports.createPost = async (req, res) => {
   console.log(req.body);
   const record = new Account(req.body);
   await record.save();
