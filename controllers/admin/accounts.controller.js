@@ -26,9 +26,19 @@ module.exports.create = async (req, res) => {
 
 //  POST /admin/accounts/create
 module.exports.createPost = async (req, res) => {
-  console.log(req.body);
-  req.body.password = md5(req.body.password);
-  const record = new Account(req.body);
-  await record.save();
-  res.redirect("/admin/accounts");
+  // console.log(req.body);
+  const emailExits = await Account.findOne({
+    email: req.body.email,
+    deleted: false,
+  });
+
+  if (emailExits) {
+    req.flash("error", "Email đã tồn tại, vui lòng nhập lại email khác");
+    res.redirect(req.get("Referrer") || "/");
+  } else {
+    req.body.password = md5(req.body.password);
+    const record = new Account(req.body);
+    await record.save();
+    res.redirect("/admin/accounts");
+  }
 };
