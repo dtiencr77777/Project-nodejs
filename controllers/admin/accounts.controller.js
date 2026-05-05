@@ -7,9 +7,11 @@ module.exports.accountsDashboard = async (req, res) => {
   let find = {
     deleted: false,
   };
-  const records = await Account.find(find);
+  const records = await Account.find(find).select("-password -token");
+  console.log(records);
   res.render("admin/pages/accounts/index", {
     pageTitle: "Acounts DashBoard",
+    records: records,
   });
 };
 
