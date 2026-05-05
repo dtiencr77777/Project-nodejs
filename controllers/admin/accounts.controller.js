@@ -8,7 +8,14 @@ module.exports.accountsDashboard = async (req, res) => {
     deleted: false,
   };
   const records = await Account.find(find).select("-password -token");
-  console.log(records);
+  // console.log(records);
+  for (const record of records) {
+    const role = await Role.findOne({
+      deleted: false,
+    });
+    record.role = role;
+  }
+
   res.render("admin/pages/accounts/index", {
     pageTitle: "Acounts DashBoard",
     records: records,
