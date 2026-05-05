@@ -1,4 +1,6 @@
 const Account = require("../../models/account.model");
+const Role = require("../../models/roles.models");
+
 const md5 = require("md5");
 //  GET /admin/accounts
 module.exports.accountsDashboard = async (req, res) => {
@@ -12,9 +14,13 @@ module.exports.accountsDashboard = async (req, res) => {
 };
 
 //  Get /admin/accounts/create
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
+  const roles = await Role.find({
+    deleted: false,
+  });
   res.render("admin/pages/accounts/create.pug", {
     pageTitle: "Tạo tài khoản",
+    roles: roles,
   });
 };
 
