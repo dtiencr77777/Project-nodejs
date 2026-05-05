@@ -1,5 +1,5 @@
 const Account = require("../../models/account.model");
-
+const md5 = require("md5");
 //  GET /admin/accounts
 module.exports.accountsDashboard = async (req, res) => {
   let find = {
@@ -21,6 +21,7 @@ module.exports.create = (req, res) => {
 //  POST /admin/accounts/create
 module.exports.createPost = async (req, res) => {
   console.log(req.body);
+  req.body.password = md5(req.body.password);
   const record = new Account(req.body);
   await record.save();
   res.redirect("/admin/accounts");
