@@ -11,6 +11,7 @@ module.exports.accountsDashboard = async (req, res) => {
   // console.log(records);
   for (const record of records) {
     const role = await Role.findOne({
+      _id: record.role_id,
       deleted: false,
     });
     record.role = role;
