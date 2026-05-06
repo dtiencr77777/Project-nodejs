@@ -52,3 +52,24 @@ module.exports.createPost = async (req, res) => {
     res.redirect("/admin/accounts");
   }
 };
+
+module.exports.edit = async (req, res) => {
+  let find = {
+    _id: req.params.id,
+    deleted: false,
+  };
+  try {
+    const data = await Account.findOne(find);
+    const roles = await Role.find({
+      deleted: false,
+    });
+
+    res.render("admin/pages/accounts/edit.pug", {
+      pageTitle: "sửa tài khoản",
+      data: data,
+      roles: roles,
+    });
+  } catch (error) {
+    res.render("/admin/accounts");
+  }
+};

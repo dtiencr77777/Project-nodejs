@@ -26,4 +26,6 @@ router.post(
   controler.createPost,
 );
 
+router.get("/edit/:id", controler.edit);
+
 module.exports = router;
