@@ -27,5 +27,12 @@ router.post(
 );
 
 router.get("/edit/:id", controler.edit);
+router.patch(
+  "/edit/:id",
+  upload.single("avatar"),
+  uploadCloudRouter.uploadCloud,
+  validate.editAccounts,
+  controler.editPatch,
+);
 
 module.exports = router;
