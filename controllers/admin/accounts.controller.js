@@ -65,7 +65,7 @@ module.exports.edit = async (req, res) => {
     });
 
     res.render("admin/pages/accounts/edit.pug", {
-      pageTitle: "sửa tài khoản",
+      pageTitle: "Edit Account",
       data: data,
       roles: roles,
     });
