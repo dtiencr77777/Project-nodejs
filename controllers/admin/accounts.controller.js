@@ -73,3 +73,16 @@ module.exports.edit = async (req, res) => {
     res.render("/admin/accounts");
   }
 };
+
+module.exports.editPatch = async (req, res) => {
+  const id = req.params.id;
+  if (req.body.password) {
+    req.body.password = md5(req.body.password);
+  } else {
+    delete req.body.password;
+  }
+
+  await Account.updateOne({ _id: id }, req.body);
+  req.flash("success", "cập nhật tài khoản thành công");
+  res.redirect("/admin/accounts");
+};
