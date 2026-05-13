@@ -24,3 +24,7 @@ npm install mongodb
  khi kết nối chú ý đúng :Collection Name
 
 mã hoá mật khẩu : MD5
+
+
+render lại trang trước:
+  res.redirect(req.get("Referrer") || "/");

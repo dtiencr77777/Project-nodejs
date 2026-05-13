@@ -2,10 +2,11 @@ extends ../../layouts/auth.pug
 include ../../mixins/alert.pug
 
 block main
-
+  +alert-success(3000)
+  +alert-error(3000)
   .container.my-5
     .row.justify-content-center
-      .col-8
+      .col-4
         h1(class="text-center mb-4") Đăng nhập
         form(
           action="/admin/auth/login",
