@@ -1,0 +1,40 @@
+extends ../../layouts/auth.pug
+include ../../mixins/alert.pug
+
+block main
+
+  .container.my-5
+    .row.justify-content-center
+      .col-8
+        h1(class="text-center mb-4") Đăng nhập
+        form(
+          action="/admin/auth/login",
+          method="POST",
+
+        )
+          div(class="form-group")
+            lable(for="email") Email
+            input(
+              type="email",
+              name="email",
+              id="email",
+              class="form-control",
+              placeholder="Nhập email của bạn",
+              required
+            )
+          div(class="form-group")
+            lable(for="password") Mật khẩu
+            input(
+              type="password",
+              name="password",
+              id="password",
+              class="form-control",
+              placeholder="Nhập mật khẩu của bạn",
+              required
+            )
+          div(class="text-center")
+            button(
+              type="submit",
+              class="btn btn-primary btn-block"
+
+            ) Đăng nhập
