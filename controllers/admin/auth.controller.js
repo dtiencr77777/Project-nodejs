@@ -42,3 +42,9 @@ module.exports.loginPost = async (req, res) => {
   res.cookie("token", user.token);
   res.redirect("/admin/accounts");
 };
+
+module.exports.logout = (req, res) => {
+  // xoas token trên cookie
+  res.clearCookie("token");
+  res.redirect("/admin/auth/login");
+};
