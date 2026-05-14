@@ -39,5 +39,6 @@ module.exports.loginPost = async (req, res) => {
     res.redirect(req.get("Referrer") || "/");
     return;
   }
+  res.cookie("token", user.token);
   res.redirect("/admin/accounts");
 };
