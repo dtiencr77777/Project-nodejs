@@ -1,8 +1,14 @@
-module.exports.requireAuth = (req, res, next) => {
+const Account = require("../../models/account.model");
+module.exports.requireAuth = async (req, res, next) => {
   if (!req.cookies.token) {
     res.redirect("/admin/auth/login");
   } else {
-    console.log("token: ", req.cookies.token);
-    next();
+    const user = await Account.findOne({ token: req.cookies.token });
+    if (!user) {
+      res.redirect("/admin/auth/login");
+    } else {
+      console.log("token: ", req.cookies.token);
+      next();
+    }
   }
 };
