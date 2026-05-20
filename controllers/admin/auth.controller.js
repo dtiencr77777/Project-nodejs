@@ -3,9 +3,14 @@ const md5 = require("md5");
 //  GET admin/auth/login
 
 module.exports.login = (req, res) => {
-  res.render("admin/pages/auth/login", {
-    pageTitle: "Login",
-  });
+  console.log(req.cookies);
+  if (req.cookies.token) {
+    res.redirect("admin/dashboard");
+  } else {
+    res.render("admin/pages/auth/login", {
+      pageTitle: "Login",
+    });
+  }
 };
 
 //  GET admin/auth/login
