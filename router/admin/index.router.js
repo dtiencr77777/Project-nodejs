@@ -17,13 +17,21 @@ module.exports = (app) => {
     dashboardRouter,
   );
 
-  app.use(PATH_ADMIN + "/products", productsRouter);
+  app.use(
+    PATH_ADMIN + "/products",
+    authMiddlewares.requireAuth,
+    productsRouter,
+  );
 
-  app.use(PATH_ADMIN + "/products-category", productCategoryRouter);
+  app.use(
+    PATH_ADMIN + "/products-category",
+    authMiddlewares.requireAuth,
+    productCategoryRouter,
+  );
 
-  app.use(PATH_ADMIN + "/roles", rolesRouter);
+  app.use(PATH_ADMIN + "/roles", authMiddlewares.requireAuth, rolesRouter);
 
-  app.use(PATH_ADMIN + "/accounts", accountRouter);
+  app.use(PATH_ADMIN + "/accounts", authMiddlewares.requireAuth, accountRouter);
 
   app.use(PATH_ADMIN + "/auth", authRouter);
 };
