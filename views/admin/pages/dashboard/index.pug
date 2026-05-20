@@ -1,4 +1,12 @@
 extends ../../layouts/default.pug
 block main
-    h1 Trang Dashboard Admin
-    p Đây là trang dashboard dành cho quản trị viên. 
+  h1 Trang Dashboard Admin
+  p Đây là trang dashboard dành cho quản trị viên. 
+  div
+    p Thông tin người dùng:
+    ul
+      li Tên: #{user.fullName}
+      li Email: #{user.email}
+        li Vai trò: #{role.title}
+        li Mô tả vai trò: #{role.description}
+        li Quyền han: #{role.permissions}
