@@ -122,11 +122,12 @@ block main
                       a.btn.btn-warning.btn-sm(
                         href=`${prefixAdmin}/products/edit/${item.id}`
                         ) Sửa
-                    a.btn.btn-danger.btn-sm.ml-1(
-                      href="#"
-                      data-id=item.id
-                      button-delete
-                      ) Xóa
+                    if(role.permissions.includes('products_delete'))
+                      a.btn.btn-danger.btn-sm.ml-1(
+                        href="#"
+                        data-id=item.id
+                        button-delete
+                        ) Xóa
 
       // Pagination
       nav
