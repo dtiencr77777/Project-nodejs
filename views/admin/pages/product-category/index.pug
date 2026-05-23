@@ -9,11 +9,13 @@ block main
           .card-body
             .row 
               .col-8
-              .col-4
-                a(
-                  href=`/admin/products-category/create`
-                  class="btn btn-outline-success"
-                ) + Thêm mới 
+              if(role.permissions.includes('products-category_create'))
+                .col-4
+                  a(
+                    href=`/admin/products-category/create`
+                    class="btn btn-outline-success"
+                  ) + Thêm mới
+
 
 
 
