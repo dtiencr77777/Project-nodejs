@@ -1,32 +1,33 @@
 extends ../../layouts/default.pug
 include ../../mixins/table-tree.pug
 block main
-  h1 Product Category List
-  .container-fluid
-    .card.mb-3
-      .card-header Danh Mục
-        .card-body
-          .row 
-            .col-8
-            .col-4
-              a(
-                href=`/admin/products-category/create`
-                class="btn btn-outline-success"
-              ) + Thêm mới 
+  if(role.permissions.includes('products-category_view'))
+    h1 Product Category List
+    .container-fluid
+      .card.mb-3
+        .card-header Danh Mục
+          .card-body
+            .row 
+              .col-8
+              .col-4
+                a(
+                  href=`/admin/products-category/create`
+                  class="btn btn-outline-success"
+                ) + Thêm mới 
 
 
 
-        .table-responsive
-          table.table.table-hover.table-sm(checkbox-multi)
-            thead
-              tr
-                th
-                  input(type="checkbox" name="checkall")
-                th STT
-                th Hình ảnh
-                th Tiêu đề
-                th Vị trí
-                th Trạng thái
-                th Hành động
-            tbody
-              +table-tree(records)
+          .table-responsive
+            table.table.table-hover.table-sm(checkbox-multi)
+              thead
+                tr
+                  th
+                    input(type="checkbox" name="checkall")
+                  th STT
+                  th Hình ảnh
+                  th Tiêu đề
+                  th Vị trí
+                  th Trạng thái
+                  th Hành động
+              tbody
+                +table-tree(records)

@@ -10,137 +10,138 @@ include ../../mixins/sort.pug
 
 
 block main
-  .container-fluid
-    h1.mb-3 Trang Sản Phẩm Admin
-    p Đây là trang quản lý sản phẩm dành cho quản trị viên.
-    +alert-success(5000)
-    +alert-error(5000)
+  if(role.permissions.includes('products_view'))
+    .container-fluid
+      h1.mb-3 Trang Sản Phẩm Admin
+      p Đây là trang quản lý sản phẩm dành cho quản trị viên.
+      +alert-success(5000)
+      +alert-error(5000)
 
 
-    // Bộ lọc + tìm kiếm
-    .card.mb-3
-      .card-header Bộ lọc và Tìm kiếm
-      .card-body
-        .row
-          .col-md-6.mb-2
-            +filerStatus(filterStatus)
-          .col-md-6.mb-2
-            +form-Search(keyword)
-
-
-
-      //- sắp xếp sản phẩm
-    .card.mb-3
-      .card-header Sắp xếp sản phẩm
-      .card-body
-        .row
-          .col-4
-            +sort()
-
-    // Danh sách sản phẩm
-    .card.mb-3
-      .card-header Danh sách sản phẩm
-      .card-body
-        .row 
-          .col-8
-            +form-change-multi('/admin/products/change-multi?_method=PATCH')
-          .col-4
-            a(
-              href=`/admin/products/create`
-              class="btn btn-outline-success"
-
-            ) + Thêm mới 
+      // Bộ lọc + tìm kiếm
+      .card.mb-3
+        .card-header Bộ lọc và Tìm kiếm
+        .card-body
+          .row
+            .col-md-6.mb-2
+              +filerStatus(filterStatus)
+            .col-md-6.mb-2
+              +form-Search(keyword)
 
 
 
+        //- sắp xếp sản phẩm
+      .card.mb-3
+        .card-header Sắp xếp sản phẩm
+        .card-body
+          .row
+            .col-4
+              +sort()
+
+      // Danh sách sản phẩm
+      .card.mb-3
+        .card-header Danh sách sản phẩm
+        .card-body
+          .row 
+            .col-8
+              +form-change-multi('/admin/products/change-multi?_method=PATCH')
+            .col-4
+              a(
+                href=`/admin/products/create`
+                class="btn btn-outline-success"
+
+              ) + Thêm mới 
 
 
 
 
-      // Bảng sản phẩm
-      .table-responsive
-        table.table.table-hover.table-sm(checkbox-multi)
-          thead
-            tr
-              th
-                input(type="checkbox" name="checkall")
-              th STT
-              th Hình ảnh
-              th Tiêu đề
-              th Giá
-              th Vị trí
-              th Trạng thái
-              th Hành động
-          tbody
-            each item, index in productsPug
+
+
+
+        // Bảng sản phẩm
+        .table-responsive
+          table.table.table-hover.table-sm(checkbox-multi)
+            thead
               tr
-                td
-                  input(type="checkbox" name="id" value=item.id)
-                td #{objectPagination.limitItem*(objectPagination.currentPage-1)+(index +1)}
-                td
-                  img(
-                    src=item.thumbnail
-                    alt=item.title
-                    width="100"
-                    height="100"
-                    style="object-fit: cover;"
-                  )
-                td #{item.title}
-                td #{item.price} $
-                td
-                  input(
-                    type="number"
-                    value = item.position
-                    style = " width : 60px"
-                    min="1"
-                    name="position"
-                  )
-                td
-                  if item.status === 'active'
-                    a.badge.badge-success(
-                      href="javascript:;"
+                th
+                  input(type="checkbox" name="checkall")
+                th STT
+                th Hình ảnh
+                th Tiêu đề
+                th Giá
+                th Vị trí
+                th Trạng thái
+                th Hành động
+            tbody
+              each item, index in productsPug
+                tr
+                  td
+                    input(type="checkbox" name="id" value=item.id)
+                  td #{objectPagination.limitItem*(objectPagination.currentPage-1)+(index +1)}
+                  td
+                    img(
+                      src=item.thumbnail
+                      alt=item.title
+                      width="100"
+                      height="100"
+                      style="object-fit: cover;"
+                    )
+                  td #{item.title}
+                  td #{item.price} $
+                  td
+                    input(
+                      type="number"
+                      value = item.position
+                      style = " width : 60px"
+                      min="1"
+                      name="position"
+                    )
+                  td
+                    if item.status === 'active'
+                      a.badge.badge-success(
+                        href="javascript:;"
+                        data-id=item.id
+                        data-status=item.status
+                        button-change-status
+                      ) Hoạt động
+                    else
+                      a.badge.badge-danger(
+                        href="javascript:;"
+                        data-id=item.id
+                        data-status=item.status
+                        button-change-status
+                      ) Không hoạt động
+                  td
+                    a.btn.btn-info.btn-sm(
+                      href=`${prefixAdmin}/products/detail/${item.id}`
+                      ) Chi Tiết
+                    a.btn.btn-warning.btn-sm(
+                      href=`${prefixAdmin}/products/edit/${item.id}`
+                      ) Sửa
+                    a.btn.btn-danger.btn-sm.ml-1(
+                      href="#"
                       data-id=item.id
-                      data-status=item.status
-                      button-change-status
-                    ) Hoạt động
-                  else
-                    a.badge.badge-danger(
-                      href="javascript:;"
-                      data-id=item.id
-                      data-status=item.status
-                      button-change-status
-                    ) Không hoạt động
-                td
-                  a.btn.btn-info.btn-sm(
-                    href=`${prefixAdmin}/products/detail/${item.id}`
-                    ) Chi Tiết
-                  a.btn.btn-warning.btn-sm(
-                    href=`${prefixAdmin}/products/edit/${item.id}`
-                    ) Sửa
-                  a.btn.btn-danger.btn-sm.ml-1(
-                    href="#"
-                    data-id=item.id
-                    button-delete
-                    ) Xóa
+                      button-delete
+                      ) Xóa
 
-    // Pagination
-    nav
-      +paginationPug(objectPagination)
+      // Pagination
+      nav
+        +paginationPug(objectPagination)
 
-    // Form đổi trạng thái
-    form(
-      action=""
-      method="POST"
-      id="form-change-status"
-      data-path="/admin/products/change-status"
-    )
-    //- Form xoá sản phẩm
-    form(
-      action=""
-      method="POST"
-      id="form-delete-item"
-      data-path=`/admin/products/delete`
-    )
-    script(src="/admin/js/productStatus.js")
-    script(src="/admin/js/productMulti.js")
-    script(src="/admin/js/productDelete.js")
+      // Form đổi trạng thái
+      form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path="/admin/products/change-status"
+      )
+      //- Form xoá sản phẩm
+      form(
+        action=""
+        method="POST"
+        id="form-delete-item"
+        data-path=`/admin/products/delete`
+      )
+      script(src="/admin/js/productStatus.js")
+      script(src="/admin/js/productMulti.js")
+      script(src="/admin/js/productDelete.js")
