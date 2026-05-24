@@ -13,11 +13,12 @@ block main
       .card-body
         .row 
           .col-8
-          .col-4.text-right
-            a(
-              href=`${prefixAdmin}/roles/create`
-              class="btn btn-outline-success"
-            ) + Thêm mới
+          if(role.permissions.includes('roles-create'))
+            .col-4.text-right
+              a(
+                href=`${prefixAdmin}/roles/create`
+                class="btn btn-outline-success"
+              ) + Thêm mới
 
 
           table(
@@ -41,14 +42,16 @@ block main
                         href=`${prefixAdmin}/roles/detail/${item.id}`
                         class="btn btn-secondary btn-sm"
                       ) Chi tiết
-                      a(
-                        href=`${prefixAdmin}/roles/edit/${item.id}`
-                        class="btn btn-warning btn-sm"
-                      ) Sửa             
-                      a(
-                        href=`${prefixAdmin}/roles`
-                        class="btn btn-danger btn-sm"
-                      ) Xóa  
+                      if(role.permissions.includes('roles-edit'))
+                        a(
+                          href=`${prefixAdmin}/roles/edit/${item.id}`
+                          class="btn btn-warning btn-sm"
+                        ) Sửa
+                      if(role.permissions.includes('roles-delete'))          
+                        a(
+                          href=`${prefixAdmin}/roles`
+                          class="btn btn-danger btn-sm"
+                        ) Xóa  
 
               else 
                 tr
