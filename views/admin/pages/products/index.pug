@@ -72,6 +72,7 @@ block main
                 th Giá
                 th Vị trí
                 th Trạng thái
+                th Nguời tạo
                 th Hành động
             tbody
               each item, index in productsPug
@@ -113,6 +114,8 @@ block main
                           data-status=item.status
                           button-change-status
                         ) Không hoạt động
+                  //- td  #{item.createdBy.account_id}
+                  td #{item.accountFullName}
                   td
                     a.btn.btn-info.btn-sm(
                       href=`${prefixAdmin}/products/detail/${item.id}`
