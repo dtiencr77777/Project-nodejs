@@ -4,7 +4,10 @@ const systemconfig = require("./config/system.js");
 require("dotenv").config();
 
 const app = express();
-
+// 10 moment
+const moment = require("moment");
+app.locals.moment = moment;
+// end 10
 // 9 show thông báo
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
