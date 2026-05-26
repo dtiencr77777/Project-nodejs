@@ -115,7 +115,9 @@ block main
                           button-change-status
                         ) Không hoạt động
                   //- td  #{item.createdBy.account_id}
-                  td #{item.accountFullName}
+                  td 
+                    p #{item.accountFullName}
+                    p #{item.createdBy.createdAt}
                   td
                     a.btn.btn-info.btn-sm(
                       href=`${prefixAdmin}/products/detail/${item.id}`
