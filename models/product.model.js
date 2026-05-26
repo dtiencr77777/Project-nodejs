@@ -24,7 +24,7 @@ const productschema = new mongoose.Schema(
     createdBy: {
       account_id: String,
       createdAt: {
-        type: String,
+        type: Date,
         default: Date.now(),
       },
     },
