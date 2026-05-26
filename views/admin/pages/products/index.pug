@@ -117,7 +117,8 @@ block main
                   //- td  #{item.createdBy.account_id}
                   td 
                     p #{item.accountFullName}
-                    p #{item.createdBy.createdAt}
+                    //- p #{moment(item.createdBy.createdAt).locale('vi').fromNow()}
+                    p #{moment(item.createdBy.createdAt).locale('vi').format('DD/MM/YYYY HH:mm:ss')}
                   td
                     a.btn.btn-info.btn-sm(
                       href=`${prefixAdmin}/products/detail/${item.id}`
