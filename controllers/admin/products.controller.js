@@ -130,7 +130,10 @@ module.exports.deleteItem = async (req, res) => {
   //  xoá mềm :
   await Product.updateOne(
     { _id: id },
-    { deleted: true, deletedAt: new Date() },
+    {
+      deleted: true,
+      deletedBy: { account_id: res.locals.user.id, deletedAt: new Date() },
+    },
   );
   res.redirect(req.get("Referrer") || "/");
 };
