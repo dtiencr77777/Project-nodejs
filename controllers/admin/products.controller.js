@@ -222,7 +222,17 @@ module.exports.editPatch = async (req, res) => {
     req.body.thumbnail = `/uploads/${req.file.filename}`;
   }
   try {
-    await Product.updateOne({ _id: id }, req.body);
+    const updatedBy = {
+      account_id: res.locals.user.id,
+      updatedAt: new Date(),
+    };
+    await Product.updateOne(
+      { _id: id },
+      {
+        ...req.body,
+        $push: { updatedBy: updatedBy },
+      },
+    );
     req.flash("success", "cập nhật sản phẩm thành công");
     res.redirect(`${systemConfig.prefixAdmin}/products`);
   } catch (error) {
