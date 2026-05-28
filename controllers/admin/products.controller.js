@@ -46,11 +46,21 @@ module.exports.index = async (req, res) => {
     .limit(objectPagination.limitItem)
     .skip(objectPagination.skip);
   for (const product of products) {
+    //  lấy thông tin người tạo
     const user = await Account.findOne({
       _id: product.createdBy.account_id,
     });
     if (user) {
       product.accountFullName = user.fullName;
+    }
+    //  lấy thông tin người cập nhật gần nhất
+    // console.log(product.updatedBy[product.updatedBy.lenght - 1]);
+    const updatedBy = product.updatedBy[product.updatedBy.length - 1];
+    if (updatedBy) {
+      const userUpdate = await Account.findOne({
+        _id: updatedBy.account_id,
+      });
+      updatedBy.accountFullName = userUpdate.fullName;
     }
   }
   res.render("admin/pages/products/index.pug", {
