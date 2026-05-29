@@ -76,6 +76,7 @@ block main
                 th Vị trí
                 th Trạng thái
                 th Nguời tạo
+                th Người cập nhật
                 th Hành động
             tbody
               each item, index in productsPug
@@ -117,11 +118,21 @@ block main
                           data-status=item.status
                           button-change-status
                         ) Không hoạt động
+                  //-  người tạo
                   //- td  #{item.createdBy.account_id}
                   td 
                     p #{item.accountFullName}
                     //- p #{moment(item.createdBy.createdAt).locale('vi').fromNow()}
                     +formatDateTime(item.createdBy.createdAt)
+                  //- người cập nhật
+                  td 
+                    - const updatedBy = item.updatedBy.slice(-1)[0]
+                    if(updatedBy)
+                      p #{updatedBy.accountFullName}
+                      //- p #{moment(updatedBy.createdAt).locale('vi').fromNow()}
+                      p
+                        +formatDateTime(updatedBy.updatedAt)
+
                   td
                     a.btn.btn-info.btn-sm(
                       href=`${prefixAdmin}/products/detail/${item.id}`
