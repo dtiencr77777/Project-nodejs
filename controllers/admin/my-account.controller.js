@@ -5,3 +5,9 @@ module.exports.index = (req, res) => {
     pageTitle: "My Account",
   });
 };
+
+module.exports.edit = (req, res) => {
+  res.render("admin/pages/my-account/edit.pug", {
+    pageTitle: "Edit My Account",
+  });
+};
