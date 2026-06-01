@@ -1,0 +1,19 @@
+extends ../../layouts/default.pug
+
+block main
+  h1 Cập nhật thông tin tài khoản của tôi
+  p Đây là trang cập nhật thông tin tài khoản của bạn.
+  form(method="POST" action=`${prefixAdmin}/accounts/${user._id}/edit` enctype="multipart/form-data")
+    .form-group
+      label(for="avatar") Ảnh đại diện
+      input#avatar.form-control-file(type="file" name="avatar" accept="image/*")
+    .form-group
+      label(for="fullName") Họ tên
+      input#fullName.form-control(type="text" name="fullName" value=user.fullName)
+    .form-group
+      label(for="email") Email
+      input#email.form-control(type="email" name="email" value=user.email)
+    .form-group
+      label(for="phone") Số điện thoại
+      input#phone.form-control(type="text" name="phone" value=user.phone)
+    button.btn.btn-primary(type="submit") Cập nhật thông tin cá nhân  
