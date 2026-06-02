@@ -33,6 +33,15 @@ block main
         required
         value=user.email
       )
+    div(class="password")
+      label(for="password") Mật khẩu mới
+      input(
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Để trống nếu không muốn thay đổi mật khẩu"
+      )
     div(class="form-group")
       label(for="phone") Số điện thoại
       input(  
