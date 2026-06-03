@@ -1,6 +1,7 @@
 const ProuctRouter = require("./product.router");
 const HomeRouter = require("./home.router");
+const categoryMiddleware = require("../../middlewares/client/caterogy.middlewares");
 module.exports = (app) => {
-  app.use("/", HomeRouter);
-  app.use("/products", ProuctRouter);
+  app.use("/", categoryMiddleware.category, HomeRouter);
+  app.use("/products", categoryMiddleware.category, ProuctRouter);
 };
