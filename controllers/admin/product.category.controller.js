@@ -66,6 +66,16 @@ module.exports.create = async (req, res) => {
 
 //2  POST /admin/products-category/create
 module.exports.createPost = async (req, res) => {
+  // const permissiton = res.locals.role.permissions;
+  // if (permissiton.includes("product-category_create")) {
+  //   // User has permission to create product categories
+  //   console.log(" cos quyen tao san pham");
+  // } else {
+  //   // User does not have permission
+  //   res.status(403).send("Forbidden");
+  //   return;
+  // }
+
   if (req.body.position == "") {
     const coutProductCategory = await ProductCategory.countDocuments();
     req.body.position = coutProductCategory + 1;
