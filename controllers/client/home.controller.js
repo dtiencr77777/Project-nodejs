@@ -9,7 +9,7 @@ module.exports.index = async (req, res) => {
     status: "active",
   });
   const Products = priceNewHelper.priceNew(productsFeatured);
-  console.log(Products);
+  // console.log(Products);
   res.render("client/pages/home/index.pug", {
     pageTitle: "Home Page",
     productsFeatured: Products,
