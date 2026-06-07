@@ -8,10 +8,7 @@ module.exports.index = async (req, res) => {
     deleted: false,
     status: "active",
   });
-  const Products = productsFeatured.map((item) => {
-    item.newPrice = (item.price * (100 - item.discountPercentage)) / 100;
-    return item;
-  });
+  const Products = priceNewHelper.priceNew(productsFeatured);
   console.log(Products);
   res.render("client/pages/home/index.pug", {
     pageTitle: "Home Page",
