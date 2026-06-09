@@ -5,8 +5,8 @@ module.exports.index = async (req, res) => {
   // lấy ra sản phẩm nổi bật
   const productsFeatured = await Product.find({
     featured: "1",
-    deleted: false,
-    status: "active",
+    // deleted: false,
+    // status: "active",
   });
   const Products = priceNewHelper.priceNew(productsFeatured);
   // console.log(Products);
