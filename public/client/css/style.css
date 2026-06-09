@@ -43,8 +43,18 @@
   width: 100%;
   aspect-ratio: 4/3;
   border-bottom: 1px solid #ddd;
+  position: relative;
 }
 
+.product-item .inner-featured {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
 .product-item .inner-image img {
   width: 100%;
   height: 100%;
