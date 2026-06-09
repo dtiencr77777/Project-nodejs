@@ -30,3 +30,9 @@ module.exports.slug = async (req, res) => {
     res.redirect("/products");
   }
 };
+
+//  2 GET : product/:slugCategory
+module.exports.category = async (req, res) => {
+  const slug = req.params.slugCategory;
+  res.send("slugCategory: " + slug);
+};
