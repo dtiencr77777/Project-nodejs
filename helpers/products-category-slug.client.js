@@ -9,7 +9,7 @@ module.exports.getSubCategory = async (parentId) => {
     });
     let allSubs = [...subs];
     for (const sub of subs) {
-      const childs = await getSubCategory(sub.id);
+      const childs = await getCategory(sub.id);
       allSubs = allSubs.concat(childs);
     }
     // console.log(allSubs);
