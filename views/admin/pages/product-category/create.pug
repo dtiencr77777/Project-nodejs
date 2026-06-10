@@ -5,7 +5,7 @@ include ../../mixins/select-tree.pug
 
 
 block main
-  if(role.permissions.includes('products-category-create'))
+  if(role.permissions.includes('products-category_create'))
     +alert-error(4000)
     h1(class="mb-4") Thêm mới danh mục Sản Phẩm
 

@@ -53,7 +53,7 @@ module.exports.category = async (req, res) => {
   // res.send("slugCategory: " + slug);
 
   res.render("client/pages/products/index.pug", {
-    pageTitle: "ProductsCategory Page",
+    pageTitle: category.title,
     products: newProducts,
   });
 };
