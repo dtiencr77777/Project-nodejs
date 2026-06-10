@@ -42,16 +42,31 @@ module.exports.category = async (req, res) => {
     // deleted: false,
   });
   // console.log(category.id);
+
+  // đệ quy lấy tất cả các category con
+  const getSubCategory = async (parentId) => {
+    const subs = await ProductCategory.find({
+      parent_id: parentId,
+      status: "active",
+      // deleted: false,
+    });
+    let allSubs = [...subs];
+    for (const sub of subs) {
+      const childs = await getSubCategory(sub.id);
+      allSubs = allSubs.concat(childs);
+    }
+    return allSubs;
+  };
+  getSubCategory(category.id);
+  // end đệ quy
+
   const products = await Product.find({
     product_category_id: category.id,
     // deleted: false,
   }).sort({ position: "desc" });
-
   // console.log(products);
 
   const newProducts = productsHelper.priceNew(products);
-  // res.send("slugCategory: " + slug);
-
   res.render("client/pages/products/index.pug", {
     pageTitle: category.title,
     products: newProducts,
