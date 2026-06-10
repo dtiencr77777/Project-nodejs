@@ -1,6 +1,7 @@
 const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
-//  1 GET : product
+const productsHelper = require("../../helpers/product");
+//  1 GET : produ
 module.exports.product = async (req, res) => {
   const products = await Product.find().sort({ position: "desc" });
   const newProducts = products.map((item) => {
@@ -45,6 +46,14 @@ module.exports.category = async (req, res) => {
     product_category_id: category.id,
     // deleted: false,
   }).sort({ position: "desc" });
-  console.log(products);
-  res.send("slugCategory: " + slug);
+
+  // console.log(products);
+
+  const newProducts = productsHelper.priceNew(products);
+  // res.send("slugCategory: " + slug);
+
+  res.render("client/pages/products/index.pug", {
+    pageTitle: "ProductsCategory Page",
+    products: newProducts,
+  });
 };
