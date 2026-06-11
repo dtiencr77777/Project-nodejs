@@ -36,7 +36,6 @@ module.exports.slug = async (req, res) => {
       });
       product.category = category;
     }
-    product.priceNew = productsHelper.priceNewProduct(product);
 
     res.render("client/pages/products/detail.pug", {
       pageTitle: "Detail Page",
@@ -47,7 +46,7 @@ module.exports.slug = async (req, res) => {
   }
 };
 
-//  2 GET : product/:slugCategory
+//  3 GET : product/:slugCategory
 module.exports.category = async (req, res) => {
   const slug = req.params.slugCategory;
   const category = await ProductCategory.findOne({
