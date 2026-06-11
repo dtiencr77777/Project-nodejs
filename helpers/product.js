@@ -5,3 +5,8 @@ module.exports.priceNew = (products) => {
   });
   return Products;
 };
+
+module.exports.priceNewProduct = (products) => {
+  product.priceNew = (product.price * (100 - product.discountPercentage)) / 100;
+  return product;
+};
