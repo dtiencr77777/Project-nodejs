@@ -18,7 +18,7 @@ module.exports.product = async (req, res) => {
 };
 //  2 GET : product/:slug
 module.exports.slug = async (req, res) => {
-  const slug = req.params.slug;
+  const slug = req.params.slugCategory;
 
   try {
     let find = {

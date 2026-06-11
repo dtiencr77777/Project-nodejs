@@ -5,7 +5,7 @@ const controler = require("../../controllers/client/product.controller");
 
 router.get("/", controler.product);
 
-// router.get("/:slug", controler.slug);
+router.get("/detail/:slugCategory", controler.slug);
 // slugCategory
 router.get("/:slugCategory", controler.category);
 
