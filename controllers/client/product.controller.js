@@ -27,6 +27,17 @@ module.exports.slug = async (req, res) => {
       slug: slug,
     };
     const product = await Product.findOne(find);
+
+    // tìm category của product
+    if (product.product_category_id) {
+      const category = await ProductCategory.findOne({
+        _id: product.product_category_id,
+        // deleted: false,
+      });
+      product.category = category;
+    }
+    product.priceNew = productsHelper.priceNewProduct(product);
+
     res.render("client/pages/products/detail.pug", {
       pageTitle: "Detail Page",
       product: product,
