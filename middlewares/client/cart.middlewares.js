@@ -5,7 +5,7 @@ module.exports.cartId = async (req, res, next) => {
     // chưa có thì phải tạo
     const cart = new Cart();
     await cart.save();
-    const expriresCookie = 1000 * 30 * 60;
+    const expriresCookie = 1000 * 60 * 60;
     res.cookie("cartId", cart.id, {
       expires: new Date(Date.now() + expriresCookie),
     });
