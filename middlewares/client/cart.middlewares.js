@@ -11,6 +11,16 @@ module.exports.cartId = async (req, res, next) => {
     });
   } else {
     // có rồi chỉ cần lấy ra thôi
+    const cart = await Cart.findOne({
+      _id: req.cookies.cartId,
+    });
+    // console.log(cart);
+    cart.totalQuantity = cart.products.reduce(
+      (sum, item) => sum + item.quantity,
+      0,
+    );
+    // console.log(totalQuantity);
+    res.locals.miniCart = cart;
   }
   next();
 };
