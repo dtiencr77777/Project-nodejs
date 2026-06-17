@@ -80,3 +80,11 @@ module.exports.addPost = async (req, res) => {
   req.flash("success", "Đã thêm vào giỏ hàng");
   res.redirect(req.get("Referrer") || "/");
 };
+
+// get : cart/delete
+module.exports.delete = async (req, res) => {
+  const productId = req.cookies.cartId;
+  const cartId = req.params.productId;
+  req.flash("success", "Đã xóa khỏi giỏ hàng");
+  res.redirect(req.get("Referrer") || "/");
+};
