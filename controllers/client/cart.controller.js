@@ -1,5 +1,12 @@
 const Cart = require("../../models/cart.model");
 
+//  GET /cart/
+module.exports.index = async (req, res) => {
+  res.render("client/pages/cart/index", {
+    pageTitle: "Giỏ hàng",
+  });
+};
+
 // [POST]  /cart/add/:productId
 module.exports.addPost = async (req, res) => {
   const productId = req.params.productId;

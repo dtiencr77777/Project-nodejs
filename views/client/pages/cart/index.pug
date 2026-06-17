@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert-success(5000)
+
+  .container.my-3
+    .row
+      .col-12
+        +box-head("Giỏ hàng")
+
+
+    .row
+      .col-12
+        table(class="table table-bordered")
+          thead
+            tr
+              th STT
+              th Ảnh
+              th Tên
+              th Gia
+              th Số lượng
+              th Tổng Tiền
+              th Hành động
+
+
+          tbody
+
+
+        div(class="text-right mt-3")
+          a(href="/checkout" class="btn btn-success") Thanh Toán
