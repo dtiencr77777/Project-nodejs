@@ -1,6 +1,6 @@
 const Cart = require("../../models/cart.model");
 const Product = require("../../models/product.model");
-
+const productHelper = require("../../helpers/product");
 //  GET /cart/
 module.exports.index = async (req, res) => {
   const cartId = req.cookies.cartId;
@@ -13,10 +13,18 @@ module.exports.index = async (req, res) => {
       const productInfo = await Product.findOne({
         _id: productId,
       }).select("title thumbnail slug price discountPercentage");
+
+      productInfo.priceNew = productHelper.priceNewProduct(productInfo);
+
       item.productInfo = productInfo;
+      item.totalPrice = item.productInfo.priceNew * item.quantity;
     }
   }
-  console.log(cart);
+  // console.log(cart);
+  cart.totalPrice = cart.products.reduce(
+    (sum, item) => sum + item.totalPrice,
+    0,
+  );
 
   res.render("client/pages/cart/index", {
     pageTitle: "Giỏ hàng",

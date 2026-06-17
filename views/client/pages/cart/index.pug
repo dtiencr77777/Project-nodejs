@@ -33,9 +33,8 @@ block main
                   td
                     img(src=item.productInfo.thumbnail, alt=item.productInfo.title width= "80px")
                   td
-                    a(href=`/products/detail/${item.product_id}`) #{item.productInfo.title}
-                  td #{item.productInfo.price}
-                  td 500$
+                    a(href=`/products/detail/${item.productInfo.slug}`) #{item.productInfo.title}
+                  td #{item.productInfo.priceNew}$
                   td
                     input(
                       type="number"
@@ -45,7 +44,7 @@ block main
                       item-id=item.product_id
                       style="width: 50px"
                     )
-                  td 1000$
+                  td #{item.totalPrice}$
                   td
                     a(
                       href=`/cart/delete/${item.product_id}`
@@ -56,7 +55,7 @@ block main
               p vui lòng thêm sản phẩm vào giỏ hàng
 
 
-        h3(class="text-right") tổng đơn hàng
+        h3(class="text-right") Tổng đơn giá:#{cartDetail.totalPrice}
 
         div(class="text-right mt-3")
           a(href="/checkout" class="btn btn-success") Thanh Toán
