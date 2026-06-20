@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema(
   {
+    // user_id: String,
+    //  chưa đăng nhập thì cần => cart
+    cart_id: String,
+    userInfo: {
+      fullName: String,
+      phone: String,
+      address: String,
+    },
     title: String,
     description: String,
     permissions: {
