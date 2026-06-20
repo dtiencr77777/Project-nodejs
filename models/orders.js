@@ -9,6 +9,14 @@ const orderSchema = new mongoose.Schema(
       phone: String,
       address: String,
     },
+    products: [
+      {
+        product_id: String,
+        price: Number,
+        quantity: Number,
+        discountPercentage: Number,
+      },
+    ],
     title: String,
     description: String,
     permissions: {
