@@ -1,3 +1,6 @@
+const Cart = require("../../models/cart.model");
+const Product = require("../../models/product.model");
+const productHelper = require("../../helpers/product");
 // get : checkout
 module.exports.index = async (req, res) => {
   const cartId = req.cookies.cartId;

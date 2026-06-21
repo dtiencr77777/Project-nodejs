@@ -10,3 +10,45 @@ block main
     .row
       .col-12
         +box-head("Đặt hàng")
+
+
+    .row
+      .col-12
+        table(class="table table-bordered")
+          thead
+            tr
+              th STT
+              th Ảnh
+              th Tên
+              th Gia
+              th Số lượng
+              th Tổng Tiền
+
+
+
+          tbody
+            if(cartDetail.products.length>0)
+              each item, index in cartDetail.products
+                tr
+                  td #{index+1}
+                  td
+                    img(src=item.productInfo.thumbnail, alt=item.productInfo.title width= "80px")
+                  td
+                    a(href=`/products/detail/${item.productInfo.slug}`) #{item.productInfo.title}
+                  td #{item.productInfo.priceNew}$
+                  td #{item.quantity}
+                  td #{item.totalPrice}$
+
+            else
+              tr
+                td(
+                  colspan="7"
+                  class="text-center"
+                ) Giỏ hàng trống
+        if(cartDetail.products.length>0)
+          h3(class="text-right") Tổng đơn giá:#{cartDetail.totalPrice}
+
+        div(class="text-right mt-3")
+          a(href="/checkout" class="btn btn-success") Thanh Toán
+
+  script(src="/js/cart.js")
