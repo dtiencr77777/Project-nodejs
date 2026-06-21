@@ -48,7 +48,41 @@ block main
         if(cartDetail.products.length>0)
           h3(class="text-right") Tổng đơn giá:#{cartDetail.totalPrice}
 
-        div(class="text-right mt-3")
-          a(href="/checkout" class="btn btn-success") Thanh Toán
+        //- div(class="text-right mt-3")
+        //-   a(href="/checkout" class="btn btn-success") Thanh Toán
+    if(cartDetail.products.length>0)
+      .row
+        .col-12
+          .card.p-4.my-4
+            form(
+              action="/checkout/order"
+              method="POST"
+            )
+              div(class="form-group")
+                label(for="fullName") Họ tên
+                input(
+                  type="text"
+                  class="form-control"
+                  name="fullName"
+                  require
+                )
+
+              div(class="form-group")
+                label(for="phone") Phone
+                input(
+                  type="text"
+                  class="form-control"
+                  name="phone"
+                  require
+                )
+
+              div(class="form-group")
+                label(for="address") Dia chi
+                input(
+                  type="text"
+                  class="form-control"
+                  name="address"
+                  require
+                )
 
   script(src="/js/cart.js")
