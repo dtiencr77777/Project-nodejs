@@ -1,6 +1,7 @@
 const Cart = require("../../models/cart.model");
 const Product = require("../../models/product.model");
 const productHelper = require("../../helpers/product");
+const Order = require("../../models/orders");
 // get : checkout
 module.exports.index = async (req, res) => {
   const cartId = req.cookies.cartId;
@@ -53,8 +54,23 @@ module.exports.order = async (req, res) => {
     ojProduct.discountPercentage = productInfo.discountPercentage;
     products.push(ojProduct);
   }
-  console.log(cartId);
-  console.log(userInfo);
-  console.log(products);
+  // console.log(cartId);
+  // console.log(userInfo);
+  // console.log(products);
+  const orderInfo = {
+    cart_id: cartId,
+    userInfo: userInfo,
+    products: products,
+  };
+  const order = new Order(orderInfo);
+  order.save();
+  await Cart.updateOne(
+    {
+      _id: cartId,
+    },
+    {
+      products: [],
+    },
+  );
   res.send("ok");
 };
