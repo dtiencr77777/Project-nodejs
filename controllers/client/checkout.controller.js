@@ -30,3 +30,31 @@ module.exports.index = async (req, res) => {
     cartDetail: cart,
   });
 };
+
+// [POST] :checkout/order
+module.exports.order = async (req, res) => {
+  const cartId = req.cookies.cartId;
+  const userInfo = req.body;
+  const cart = await Cart.findOne({
+    _id: cartId,
+  });
+  const products = [];
+  for (const product of cart.products) {
+    const ojProduct = {
+      product_id: product.product_id,
+      price: 0,
+      quantity: product.quantity,
+      discountPercentage: 0,
+    };
+    const productInfo = await Product.findOne({
+      _id: product.product_id,
+    }).select("price discountPercentage");
+    ojProduct.price = productInfo.price;
+    ojProduct.discountPercentage = productInfo.discountPercentage;
+    products.push(ojProduct);
+  }
+  console.log(cartId);
+  console.log(userInfo);
+  console.log(products);
+  res.send("ok");
+};
