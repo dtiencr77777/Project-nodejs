@@ -72,5 +72,13 @@ module.exports.order = async (req, res) => {
       products: [],
     },
   );
-  res.send("ok");
+  res.redirect(`/checkout/success/${order.id}`);
+};
+
+// GET : /checkout/success/:orderId
+module.exports.success = async (req, res) => {
+  console.log(req.params.orderId);
+  res.render("client/pages/checkout/success", {
+    pageTitle: "Đặt hàng thành công",
+  });
 };
