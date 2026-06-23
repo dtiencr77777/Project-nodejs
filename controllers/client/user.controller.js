@@ -69,3 +69,26 @@ module.exports.logout = async (req, res) => {
   res.clearCookie("tokenUser");
   res.redirect("/");
 };
+
+// GET : user/password/forgot
+module.exports.forgotPassword = async (req, res) => {
+  res.render("client/pages/user/forgot-password", {
+    pageTitle: "Quên mật khẩu",
+  });
+};
+
+module.exports.forgotPasswordPost = async (req, res) => {
+  const email = req.body.email;
+  console.log(email);
+  const user = await User.findOne({
+    email: email,
+    deleted: false,
+  });
+  if (!user) {
+    req.flash("error", "Email không tồn tại");
+    res.redirect("/user/password/forgot");
+    return;
+  }
+
+  res.send("ok");
+};

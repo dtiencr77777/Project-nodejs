@@ -8,5 +8,6 @@ router.post("/register", validate.regiterPost, controler.registerPost);
 router.get("/login", controler.login);
 router.post("/login", validate.loginPost, controler.loginPost);
 router.get("/logout", controler.logout);
-
+router.get("/password/forgot", controler.forgotPassword);
+router.post("/password/forgot", controler.forgotPasswordPost);
 module.exports = router;
