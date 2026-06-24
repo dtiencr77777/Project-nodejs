@@ -1,5 +1,9 @@
 const md5 = require("md5");
 const User = require("../../models/user.model");
+// hafm ramdom otp
+const generateOTP = require("../../helpers/generate");
+const ForgotPassword = require("../../models/forgot-password.model");
+
 // GET : user/regiter
 module.exports.register = async (req, res) => {
   res.render("client/pages/user/register", {
@@ -79,7 +83,7 @@ module.exports.forgotPassword = async (req, res) => {
 
 module.exports.forgotPasswordPost = async (req, res) => {
   const email = req.body.email;
-  console.log(email);
+  // console.log(email);
   const user = await User.findOne({
     email: email,
     deleted: false,
@@ -89,6 +93,16 @@ module.exports.forgotPasswordPost = async (req, res) => {
     res.redirect("/user/password/forgot");
     return;
   }
+  // lưu thông tin vào db
+  const otp = generateOTP.generateRamdomNumber(6);
+  const ojForgotPassword = {
+    email: email,
+    otp: otp,
+    expireAt: Date.now(),
+  };
+  console.log(ojForgotPassword);
+  const forgotPassword = new ForgotPassword(ojForgotPassword);
+  await forgotPassword.save();
 
   res.send("ok");
 };
