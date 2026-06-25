@@ -14,7 +14,11 @@ router.post(
   validate.forgotPasswordPost,
   controler.forgotPasswordPost,
 );
-
+//  nhập otp
 router.get("/password/otp", controler.otpPassword);
+router.post("/password/otp", controler.otpPasswordPost);
+
+// lấy mật khẩu
+router.get("/password/reset", controler.resetPassword);
 
 module.exports = router;
