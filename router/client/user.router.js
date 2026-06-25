@@ -14,4 +14,7 @@ router.post(
   validate.forgotPasswordPost,
   controler.forgotPasswordPost,
 );
+
+router.get("/password/otp", controler.otpPassword);
+
 module.exports = router;
