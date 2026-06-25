@@ -100,9 +100,20 @@ module.exports.forgotPasswordPost = async (req, res) => {
     otp: otp,
     expireAt: Date.now(),
   };
-  console.log(ojForgotPassword);
+  // console.log(ojForgotPassword);
   const forgotPassword = new ForgotPassword(ojForgotPassword);
   await forgotPassword.save();
 
-  res.send("ok");
+  // res.send("ok");
+  res.redirect(`/user/password/otp?email=${email}`);
+};
+
+// GET : user/password/otp
+module.exports.otpPassword = async (req, res) => {
+  const email = req.query.email;
+  console.log(email);
+  res.render("client/pages/user/otp-password", {
+    pageTitle: "Nhập mã OTP",
+    email: email,
+  });
 };
