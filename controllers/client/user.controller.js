@@ -111,7 +111,7 @@ module.exports.forgotPasswordPost = async (req, res) => {
 // GET : user/password/otp
 module.exports.otpPassword = async (req, res) => {
   const email = req.query.email;
-  console.log(email);
+  // console.log(email);
   res.render("client/pages/user/otp-password", {
     pageTitle: "Nhập mã OTP",
     email: email,
@@ -120,7 +120,7 @@ module.exports.otpPassword = async (req, res) => {
 
 // POST : user/password/otp
 module.exports.otpPasswordPost = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const email = req.body.email;
   const otp = req.body.otp;
   const result = await ForgotPassword.findOne({
@@ -148,4 +148,15 @@ module.exports.resetPassword = async (req, res) => {
   res.render("client/pages/user/reset-password", {
     pageTitle: "Đặt lại mật khẩu",
   });
+};
+
+// POST : user/password/reset
+module.exports.resetPasswordPost = async (req, res) => {
+  console.log(req.body);
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+  console.log(password);
+  console.log(confirmPassword);
+
+  res.send("oke");
 };
