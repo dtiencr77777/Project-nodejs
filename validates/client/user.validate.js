@@ -1,16 +1,16 @@
 module.exports.regiterPost = (req, res, next) => {
   if (!req.body.fullName) {
-    res.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
+    req.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
     res.redirect(req.get("Referrer") || "/");
     return;
   }
   if (!req.body.email) {
-    res.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
+    req.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
     res.redirect(req.get("Referrer") || "/");
     return;
   }
   if (!req.body.password) {
-    res.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
+    req.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
     res.redirect(req.get("Referrer") || "/");
     return;
   }
@@ -19,24 +19,44 @@ module.exports.regiterPost = (req, res, next) => {
 
 module.exports.loginPost = (req, res, next) => {
   if (!req.body.email) {
-    res.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
+    req.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
     res.redirect(req.get("Referrer") || "/");
     return;
   }
   if (!req.body.password) {
-    res.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
+    req.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
     res.redirect(req.get("Referrer") || "/");
     return;
   }
   next();
 };
-
+//
 module.exports.forgotPasswordPost = (req, res, next) => {
   if (!req.body.email) {
-    res.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
+    req.flash("error", "Vui lòng điền đầy đủ thông tin tài khoản");
     res.redirect(req.get("Referrer") || "/");
     return;
   }
 
+  next();
+};
+//  validate cho resetPassword
+module.exports.resetPasswordPost = (req, res, next) => {
+  if (!req.body.password) {
+    req.flash("error", "Vui lòng nhập lại mật khẩu mới");
+    res.redirect(req.get("Referrer") || "/");
+    return;
+  }
+
+  if (!req.body.confirmPassword) {
+    req.flash("error", "Vui lòng xác nhận mật khẩu mới");
+    res.redirect(req.get("Referrer") || "/");
+    return;
+  }
+  if (req.body.password !== req.body.confirmPassword) {
+    req.flash("error", "Mật khẩu không khớp");
+    res.redirect(req.get("Referrer") || "/");
+    return;
+  }
   next();
 };
