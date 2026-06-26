@@ -3,7 +3,8 @@ const User = require("../../models/user.model");
 // hafm ramdom otp
 const generateOTP = require("../../helpers/generate");
 const ForgotPassword = require("../../models/forgot-password.model");
-
+// SendMail
+const sendMailHelper = require("../../helpers/sendMail");
 // GET : user/regiter
 module.exports.register = async (req, res) => {
   res.render("client/pages/user/register", {
@@ -103,8 +104,8 @@ module.exports.forgotPasswordPost = async (req, res) => {
   // console.log(ojForgotPassword);
   const forgotPassword = new ForgotPassword(ojForgotPassword);
   await forgotPassword.save();
-
-  // res.send("ok");
+  // nếu tồn tại email thì gửi mã OTP sang email
+  console.log("OTP", otp);
   res.redirect(`/user/password/otp?email=${email}`);
 };
 // ===========================lấy mã otp
