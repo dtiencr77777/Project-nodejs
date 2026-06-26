@@ -152,11 +152,17 @@ module.exports.resetPassword = async (req, res) => {
 
 // POST : user/password/reset
 module.exports.resetPasswordPost = async (req, res) => {
-  console.log(req.body);
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
-  console.log(password);
-  console.log(confirmPassword);
-
-  res.send("oke");
+  const tokenUser = req.cookies.tokenUser;
+  await User.updateOne(
+    {
+      tokenUser: tokenUser,
+    },
+    {
+      password: md5(password),
+    },
+  );
+  req.flash("success", "Đặt lại mật khẩu thành công");
+  res.redirect("/");
 };
