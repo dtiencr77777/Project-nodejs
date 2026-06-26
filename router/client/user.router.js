@@ -20,5 +20,10 @@ router.post("/password/otp", controler.otpPasswordPost);
 
 // lấy mật khẩu
 router.get("/password/reset", controler.resetPassword);
+router.post(
+  "/password/reset",
+  validate.resetPasswordPost,
+  controler.resetPasswordPost,
+);
 
 module.exports = router;
