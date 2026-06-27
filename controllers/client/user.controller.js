@@ -104,10 +104,16 @@ module.exports.forgotPasswordPost = async (req, res) => {
   // console.log(ojForgotPassword);
   const forgotPassword = new ForgotPassword(ojForgotPassword);
   await forgotPassword.save();
+
   // nếu tồn tại email thì gửi mã OTP sang email
-  console.log("OTP", otp);
+  const subject = "Mã OTP xác minh lấy lại mật khẩu";
+  const html = `
+    Mã OTP để lấy lại mật khẩu là: ${otp}
+  `;
+  sendMailHelper.SendMail(email, subject, html);
   res.redirect(`/user/password/otp?email=${email}`);
 };
+
 // ===========================lấy mã otp
 // GET : user/password/otp
 module.exports.otpPassword = async (req, res) => {
