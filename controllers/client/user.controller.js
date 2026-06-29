@@ -1,5 +1,6 @@
 const md5 = require("md5");
 const User = require("../../models/user.model");
+const Cart = require("../../models/cart.model");
 // hafm ramdom otp
 const generateOTP = require("../../helpers/generate");
 const ForgotPassword = require("../../models/forgot-password.model");
@@ -65,6 +66,18 @@ module.exports.loginPost = async (req, res) => {
     res.redirect("/user/login");
     return;
   }
+
+  //  thêm user vào Model : Cart
+  // console.log(req.cookies.cartId);
+  // console.log(user.id);
+  await Cart.updateOne(
+    {
+      _id: req.cookies.cartId,
+    },
+    {
+      user_id: user.id,
+    },
+  );
   res.cookie("tokenUser", user.tokenUser);
   res.redirect("/");
 };
