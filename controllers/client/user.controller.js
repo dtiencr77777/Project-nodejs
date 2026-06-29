@@ -173,3 +173,16 @@ module.exports.resetPasswordPost = async (req, res) => {
   req.flash("success", "Đặt lại mật khẩu thành công");
   res.redirect("/");
 };
+
+// POST : user/info
+module.exports.info = async (req, res) => {
+  const tokenUser = req.cookies.tokenUser;
+  const user = await User.findOne({
+    tokenUser: tokenUser,
+  }).select("-password");
+  console.log(user);
+  res.render("client/pages/user/info", {
+    pageTitle: "Thông tin cá nhân",
+    infoUser: user,
+  });
+};
