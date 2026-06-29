@@ -3,6 +3,8 @@ const router = express.Router();
 
 const controler = require("../../controllers/client/user.controller");
 const validate = require("../../validates/client/user.validate");
+const authMiddleware = require("../../middlewares/client/auth.middlewares");
+// =====================================================
 router.get("/register", controler.register);
 router.post("/register", validate.regiterPost, controler.registerPost);
 router.get("/login", controler.login);
@@ -25,5 +27,8 @@ router.post(
   validate.resetPasswordPost,
   controler.resetPasswordPost,
 );
+
+// giới thiệu
+router.get("/info", authMiddleware.requireAuth, controler.info);
 
 module.exports = router;
