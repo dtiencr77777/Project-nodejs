@@ -9,8 +9,19 @@ module.exports.general = async (req, res) => {
 };
 
 //PATCH admin/settings/general
-module.exports.generalPatch = (req, res) => {
-  const settingGeneral = new SettingGeneral(req.body);
-  settingGeneral.save();
+module.exports.generalPatch = async (req, res) => {
+  const settingGeneral = SettingGeneral.findOne({});
+  if (settingGeneral) {
+    await SettingGeneral.updateOne(
+      {
+        _id: settingGeneral._id,
+      },
+      req.body,
+    );
+  } else {
+    const record = new SettingGeneral(req.body);
+    record.save();
+  }
+
   res.redirect("/admin/settings/general");
 };
