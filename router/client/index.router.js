@@ -9,11 +9,14 @@ const categoryMiddleware = require("../../middlewares/client/caterogy.middleware
 const cartMiddleware = require("../../middlewares/client/cart.middlewares");
 // middlewares dành cho không hiển thị thanh header
 const userMiddleware = require("../..//middlewares/client/user.middlewares");
+// const settingMiddleware = require("../../middlewares/client/setting.middleware");
+
 module.exports = (app) => {
   // middlewares
   app.use(categoryMiddleware.category);
   app.use(cartMiddleware.cartId);
   app.use(userMiddleware.infoUser);
+  // app.use(settingMiddleware.settingGeneral);
   // router
   app.use("/", HomeRouter);
   app.use("/products", ProuctRouter);
