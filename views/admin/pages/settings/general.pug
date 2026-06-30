@@ -1,0 +1,79 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+  h1 Cài dặt chung
+  +alert-success(3000)
+  +alert-error(3000)
+
+  form(
+    action=`${prefixAdmin}/settings/general?_method=PATCH`
+    method="POST"
+    enctype="multipart/form-data"
+  )
+    div(class="form-group")
+      lable(for="websiteName") Tên Website
+      input(
+        type="text"
+        name="websiteName"
+        class="form-control"
+        placeholder="Tên Website"
+        id="websiteName")
+
+    div(
+      class="form-group"
+      upload-image
+    )
+      label(for="logo") Logo
+      input(
+        type="file"
+        class="form-control-file"
+        accept="image/*"
+        name="logo"
+        id="logo"
+        upload-image-input
+        )
+      img(
+        src=""
+        class="image-preview"
+        upload-image-preview
+      )
+
+    div(class="form-group")
+      lable(for="phone") Phone
+      input(
+        type="text"
+        name="phone"
+        class="form-control"
+        placeholder="So dien thoai"
+        id="phone")
+
+    div(class="form-group")
+      lable(for="email") Email
+      input(
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Nhập email"
+        id="email")
+
+    div(class="form-group")
+      lable(for="address") Địa chỉ
+      input(
+        type="text"
+        name="address"
+        class="form-control"
+        placeholder="Địa chỉ hiện tại"
+        id="address")
+
+    div(class="form-group")
+      lable(for="copyright") CopyRight
+      input(
+        type="text"
+        name="copyright"
+        class="form-control"
+        placeholder="Nhập CopyRight"
+        id="copyright")
+
+    div(class="form-group mt-4")
+      button(type="submit" class="btn btn-primary") Cập nhật
