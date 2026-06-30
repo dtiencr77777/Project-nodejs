@@ -18,7 +18,10 @@ block main
         name="websiteName"
         class="form-control"
         placeholder="Tên Website"
-        id="websiteName")
+        id="websiteName"
+        value=(settingGeneral ? settingGeneral.websiteName : '')
+
+        )
 
     div(
       class="form-group"
@@ -34,7 +37,7 @@ block main
         upload-image-input
         )
       img(
-        src=""
+        src=(settingGeneral ? settingGeneral.logo : '')
         class="image-preview"
         upload-image-preview
       )
@@ -46,7 +49,8 @@ block main
         name="phone"
         class="form-control"
         placeholder="So dien thoai"
-        id="phone")
+        id="phone"
+        value=(settingGeneral ? settingGeneral.phone : ''))
 
     div(class="form-group")
       lable(for="email") Email
@@ -55,7 +59,8 @@ block main
         name="email"
         class="form-control"
         placeholder="Nhập email"
-        id="email")
+        id="email"
+        value=(settingGeneral ? settingGeneral.email : ''))
 
     div(class="form-group")
       lable(for="address") Địa chỉ
@@ -64,7 +69,9 @@ block main
         name="address"
         class="form-control"
         placeholder="Địa chỉ hiện tại"
-        id="address")
+        id="address"
+        value=(settingGeneral ? settingGeneral.address : '')
+        )
 
     div(class="form-group")
       lable(for="copyright") CopyRight
@@ -73,7 +80,9 @@ block main
         name="copyright"
         class="form-control"
         placeholder="Nhập CopyRight"
-        id="copyright")
+        id="copyright"
+        value=(settingGeneral ? settingGeneral.copyright : '')
+        )
 
     div(class="form-group mt-4")
       button(type="submit" class="btn btn-primary") Cập nhật
