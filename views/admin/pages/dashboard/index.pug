@@ -2,11 +2,53 @@ extends ../../layouts/default.pug
 block main
   h1 Trang Dashboard Admin
   p Đây là trang dashboard dành cho quản trị viên. 
-  div
-    p Thông tin người dùng:
-    ul
-      li Tên: #{user.fullName}
-      li Email: #{user.email}
-        li Vai trò: #{role.title}
-        li Mô tả vai trò: #{role.description}
-        li Quyền han: #{role.permissions}
+  .row.mt-4
+    .col-12
+      .card.mb-4
+        .card-header Thông tin tài khoản
+        .card-body
+          if(user.avatar)
+            img(
+              src=user.avatar,
+              style="height: 100px; margin-bottom: 10px;"
+            )
+          if(user.fullName)
+            p Họ và tên: <b>#{user.fullName}</b>
+          if(user.email)
+            p Email: <b>#{user.email}</b>
+          if(user.phone)
+            p Số điện thoại: <b>#{user.phone}</b>
+          if(role.title)
+            p Vai trò: <b>#{role.title}</b>
+
+    .col-6
+      .card.mb-4
+        .card-header Danh mục sản phẩm
+        .card-body
+          p số lượng : <b>#{statistic.categoryProduct.total}</b>
+          p hoạt động : <b>#{statistic.categoryProduct.active}</b>
+          p ngừng hoạt động : <b>#{statistic.categoryProduct.inactive}</b>
+
+    .col-6
+      .card.mb-4
+        .card-header Sản phẩm
+        .card-body
+          p số lượng : <b>#{statistic.product.total}</b>
+          p hoạt động : <b>#{statistic.product.active}</b>
+          p ngừng hoạt động : <b>#{statistic.product.inactive}</b>
+
+    .col-6
+      .card.mb-4
+        .card-header Tài khoản admin
+        .card-body
+          p số lượng : <b>#{statistic.account.total}</b>
+          p hoạt động : <b>#{statistic.account.active}</b>
+          p ngừng hoạt động : <b>#{statistic.account.inactive}</b>
+
+    .col-6
+      .card.mb-4
+        .card-header Tài khoản client
+        .card-body
+          p số lượng : <b>#{statistic.user.total}</b>
+          p hoạt động : <b>#{statistic.user.active}</b>
+          p ngừng hoạt động : <b>#{statistic.user.inactive}</b>
