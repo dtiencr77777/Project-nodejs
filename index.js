@@ -51,7 +51,13 @@ app.use(
 const routerClient = require("./router/client/index.router");
 routerClient(app);
 const routerAdmin = require("./router/admin/index.router");
+
 routerAdmin(app);
+app.use((req, res) => {
+  res.status(404).render("client/pages/error/404", {
+    pageTitle: "404 - Page Not Found",
+  });
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
