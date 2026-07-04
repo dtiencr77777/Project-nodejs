@@ -4,7 +4,7 @@ const SearchRouter = require("./search.router");
 const CartRouter = require("./cart.router");
 const CheckoutRouter = require("./checkout.router");
 const UserRouter = require("./user.router");
-
+const ChatRouter = require("./chat.router");
 const categoryMiddleware = require("../../middlewares/client/caterogy.middlewares");
 const cartMiddleware = require("../../middlewares/client/cart.middlewares");
 // middlewares dành cho không hiển thị thanh header
@@ -24,4 +24,5 @@ module.exports = (app) => {
   app.use("/cart", CartRouter);
   app.use("/checkout", CheckoutRouter);
   app.use("/user", UserRouter);
+  app.use("/chat", ChatRouter);
 };
