@@ -1,9 +1,22 @@
 const express = require("express");
 const systemconfig = require("./config/system.js");
+// 11.khai bao socket.io
+const http = require("http");
+const { Server } = require("socket.io");
 
+// end socket.io
 require("dotenv").config();
 
 const app = express();
+// =======================
+// socket.io
+const server = http.createServer(app);
+const io = new Server(server);
+
+io.on("connection", (socket) => {
+  console.log("a user connected", socket.id);
+});
+
 // 10 moment
 const moment = require("moment");
 app.locals.moment = moment;
@@ -58,6 +71,6 @@ app.use((req, res) => {
     pageTitle: "404 - Page Not Found",
   });
 });
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
