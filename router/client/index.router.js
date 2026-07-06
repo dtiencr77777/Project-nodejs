@@ -10,7 +10,7 @@ const cartMiddleware = require("../../middlewares/client/cart.middlewares");
 // middlewares dành cho không hiển thị thanh header
 const userMiddleware = require("../..//middlewares/client/user.middlewares");
 // const settingMiddleware = require("../../middlewares/client/setting.middleware");
-
+const authMiddleware = require("../../middlewares/client/auth.middlewares");
 module.exports = (app) => {
   // middlewares
   app.use(categoryMiddleware.category);
@@ -24,5 +24,5 @@ module.exports = (app) => {
   app.use("/cart", CartRouter);
   app.use("/checkout", CheckoutRouter);
   app.use("/user", UserRouter);
-  app.use("/chat", ChatRouter);
+  app.use("/chat", authMiddleware.requireAuth, ChatRouter);
 };
