@@ -9,13 +9,12 @@ require("dotenv").config();
 
 const app = express();
 // =======================
-// socket.io
+//11 socket.io
 const server = http.createServer(app);
 const io = new Server(server);
+global._io = io;
 
-io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
-});
+// end 11
 
 // 10 moment
 const moment = require("moment");
