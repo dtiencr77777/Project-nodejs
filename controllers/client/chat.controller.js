@@ -6,7 +6,8 @@ module.exports.index = async (req, res) => {
   // socket.io
   _io.on("connection", (socket) => {
     // console.log("a user connected", socket.id);
-    socket.on("CLIENT_SEND_MESSAGE", async (content) => {
+    // " bỏ on dùng once thì chỉ load 1 lần, còn on thì load nhiều lần"
+    socket.once("CLIENT_SEND_MESSAGE", async (content) => {
       // lưu vào database
       const chat = new Chat({
         user_id: userId,
