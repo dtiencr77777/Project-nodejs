@@ -8,7 +8,7 @@ if (formSendData) {
     const content = e.target.elements.content.value;
     console.log(content);
     if (content) {
-      socket.emit("CLIENT_SEND_MESSAGE", { content });
+      socket.emit("CLIENT_SEND_MESSAGE", content);
       e.target.elements.content.value = "";
     }
   });
