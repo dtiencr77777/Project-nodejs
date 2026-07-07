@@ -1,7 +1,7 @@
 const Chat = require("../../models/chat.model");
 // GET : /chat
 module.exports.index = async (req, res) => {
-  const userId = req.locals.user.id;
+  const userId = res.locals.user.id;
 
   // socket.io
   _io.on("connection", (socket) => {
