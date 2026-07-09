@@ -19,11 +19,18 @@ if (formSendData) {
 // server return message
 socket.on("SERVER_RETURN_MESSAGE", (data) => {
   // console.log(data);
+  const myId = document.querySelector("[my-id]").getAttribute("my-id");
   const body = document.querySelector(".chat .inner-body");
   const div = document.createElement("div");
-  div.classList.add("inner-incoming");
+  let htmlFullName = "";
+  if (myId == data.userId) {
+    div.classList.add("inner-outgoing");
+  } else {
+    htmlFullName = `<div class="inner-name">${data.fullName}</div>`;
+    div.classList.add("inner-incoming");
+  }
   div.innerHTML = `
-      <div class="inner-name">${data.fullName}</div>
+      ${htmlFullName}
       <div class="inner-content">${data.content}</div>
 
   `;
