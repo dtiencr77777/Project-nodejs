@@ -334,3 +334,12 @@
 }
 
 /* End chat */
+
+/* show emoji */
+.inner-foot .tooltip {
+  visibility: hidden;
+}
+.inner-foot .tooltip.shown {
+  visibility: visible;
+  opacity: 1;
+}
