@@ -35,6 +35,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
 
   `;
   body.appendChild(div);
+  bodyChat.scrollTop = bodyChat.scrollHeight;
 });
 
 // end  server return message
