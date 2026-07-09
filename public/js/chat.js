@@ -13,3 +13,21 @@ if (formSendData) {
     }
   });
 }
+
+// end CLIENT SEND MESSAGE
+
+// server return message
+socket.on("SERVER_RETURN_MESSAGE", (data) => {
+  // console.log(data);
+  const body = document.querySelector(".chat .inner-body");
+  const div = document.createElement("div");
+  div.classList.add("inner-incoming");
+  div.innerHTML = `
+      <div class="inner-name">${data.fullName}</div>
+      <div class="inner-content">${data.content}</div>
+
+  `;
+  body.appendChild(div);
+});
+
+// end  server return message
