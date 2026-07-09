@@ -38,3 +38,10 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
 });
 
 // end  server return message
+
+// Scroll to bottom : tự động cuộn xuong dưới khi có tin nhắn mới
+const bodyChat = document.querySelector(".chat .inner-body");
+if (bodyChat) {
+  bodyChat.scrollTop = bodyChat.scrollHeight;
+}
+// end scroll to botton
