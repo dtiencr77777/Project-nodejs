@@ -23,8 +23,18 @@ module.exports.index = async (req, res) => {
         fullName: fullName,
       });
     });
-  });
 
+    // typing
+    socket.on("CLIENT_SEND_TYPING", async (type) => {
+      // console.log(type);
+      socket.broadcast.emit("SERVER_RETURN_TYPING", {
+        user_id: userId,
+        fullName: fullName,
+        type: type,
+      });
+    });
+    // end typing
+  });
   const chats = await Chat.find({
     deleted: false,
   });
