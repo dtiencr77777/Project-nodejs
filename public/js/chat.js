@@ -82,3 +82,9 @@ if (emojiPicker) {
   // end input keyup
 }
 // end insert emoji to input
+
+// SERVER_RETURN_TYPING
+socket.on("SERVER_RETURN_TYPING", (data) => {
+  console.log(data);
+});
+// end server
