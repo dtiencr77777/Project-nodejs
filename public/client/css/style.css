@@ -336,10 +336,11 @@
 /* End chat */
 
 /* show emoji */
-.inner-foot .tooltip {
+.tooltip {
   visibility: hidden;
 }
-.inner-foot .tooltip.shown {
+
+.tooltip.shown {
   visibility: visible;
   opacity: 1;
 }

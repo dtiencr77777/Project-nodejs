@@ -51,7 +51,8 @@ if (bodyChat) {
 
 //  emoji picker
 
-const buttonIcon = document.querySelector("btn-icon");
+const buttonIcon = document.querySelector(".button-icon");
+// console.log(buttonIcon);
 if (buttonIcon) {
   const tooltip = document.querySelector(".tooltip");
   Popper.createPopper(buttonIcon, tooltip);
