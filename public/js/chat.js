@@ -49,8 +49,7 @@ if (bodyChat) {
 }
 // end scroll to botton
 
-//  emoji picker
-
+//show  emoji picker
 const buttonIcon = document.querySelector(".button-icon");
 // console.log(buttonIcon);
 if (buttonIcon) {
@@ -62,3 +61,18 @@ if (buttonIcon) {
   };
 }
 // end emoji picker
+
+//  insert emoji to input
+const emojiPicker = document.querySelector("emoji-picker");
+if (emojiPicker) {
+  const inputChat = document.querySelector(
+    ".chat .inner-form input[name=content]",
+  );
+  emojiPicker.addEventListener("emoji-click", (e) => {
+    // console.log(e.detail);
+
+    const icon = e.detail.unicode;
+    inputChat.value = inputChat.value + icon;
+  });
+}
+// end insert emoji to input
