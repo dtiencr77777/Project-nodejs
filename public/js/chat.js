@@ -77,6 +77,11 @@ if (emojiPicker) {
   // input keyup
   inputChat.addEventListener("keyup", () => {
     socket.emit("CLIENT_SEND_TYPING", "show");
+
+    // set khi dừng gõ
+    setTimeout(() => {
+      socket.emit("CLIENT_SEND_TYPING", "hidden");
+    }, 3000);
   });
 
   // end input keyup
@@ -90,23 +95,28 @@ if (elemtListTyping) {
     console.log(data);
     if (data.type == "show") {
       const existTyping = elemtListTyping.querySelector(
-        `div[user_id="${data.userId}"]`,
+        `[user_id="${data.userId}"]`,
       );
       if (!existTyping) {
-        const boxTying = document.querySelector("div");
+        const boxTying = document.createElement("div");
         boxTyping.classList.add("box-typing");
-        boxTying.setAttribute("user_id", data.userId);
+        boxTying.setAttribute("user-id", data.userId);
         boxTyping.innerHTML = `
-            <div class="box-typing">
               <div class="inner-name">${data.fullName}</div>
               <div class="inner-dots">
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
-            </div>
       `;
         elemtListTyping.appendChild(boxTyping);
+      }
+    } else {
+      const boxTypingRemove = elemtListTyping.querySelector(
+        `[user_id="${data.userId}"]`,
+      );
+      if (boxTypingRemove) {
+        elemtListTyping.removeChild(boxTypingRemove);
       }
     }
   });
