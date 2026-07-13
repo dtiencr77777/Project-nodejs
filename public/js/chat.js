@@ -75,11 +75,12 @@ if (emojiPicker) {
     inputChat.value = inputChat.value + icon;
   });
   // input keyup
+  var timeOut;
   inputChat.addEventListener("keyup", () => {
     socket.emit("CLIENT_SEND_TYPING", "show");
-
+    clearTimeout(timeOut);
     // set khi dừng gõ
-    setTimeout(() => {
+    timeOut = setTimeout(() => {
       socket.emit("CLIENT_SEND_TYPING", "hidden");
     }, 3000);
   });
