@@ -84,7 +84,27 @@ if (emojiPicker) {
 // end insert emoji to input
 
 // SERVER_RETURN_TYPING
-socket.on("SERVER_RETURN_TYPING", (data) => {
-  console.log(data);
-});
+const elemtListTyping = document.querySelector(".chat .inner-list-typing");
+if (elemtListTyping) {
+  socket.on("SERVER_RETURN_TYPING", (data) => {
+    console.log(data);
+    if (data.type == "show") {
+      const boxTying = document.querySelector("div");
+      boxTyping.classList.add("box-typing");
+      boxTying.setAttribute("user_id", data.userId);
+      boxTyping.innerHTML = `
+            <div class="box-typing">
+              <div class="inner-name">${data.fullName}</div>
+              <div class="inner-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+      `;
+      elemtListTyping.appendChild(boxTyping);
+    }
+  });
+}
+
 // end server
