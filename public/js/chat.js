@@ -89,10 +89,14 @@ if (elemtListTyping) {
   socket.on("SERVER_RETURN_TYPING", (data) => {
     console.log(data);
     if (data.type == "show") {
-      const boxTying = document.querySelector("div");
-      boxTyping.classList.add("box-typing");
-      boxTying.setAttribute("user_id", data.userId);
-      boxTyping.innerHTML = `
+      const existTyping = elemtListTyping.querySelector(
+        `div[user_id="${data.userId}"]`,
+      );
+      if (!existTyping) {
+        const boxTying = document.querySelector("div");
+        boxTyping.classList.add("box-typing");
+        boxTying.setAttribute("user_id", data.userId);
+        boxTyping.innerHTML = `
             <div class="box-typing">
               <div class="inner-name">${data.fullName}</div>
               <div class="inner-dots">
@@ -102,7 +106,8 @@ if (elemtListTyping) {
               </div>
             </div>
       `;
-      elemtListTyping.appendChild(boxTyping);
+        elemtListTyping.appendChild(boxTyping);
+      }
     }
   });
 }
