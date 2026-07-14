@@ -89,6 +89,9 @@ if (emojiPicker) {
 
     const icon = e.detail.unicode;
     inputChat.value = inputChat.value + icon;
+    inputChat.setSelectionRange(inputChat.value.length, inputChat.value.length);
+    inputChat.focus();
+
     showTyping();
   });
   // input keyup
