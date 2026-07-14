@@ -12,6 +12,7 @@ if (formSendData) {
     if (content) {
       socket.emit("CLIENT_SEND_MESSAGE", content);
       e.target.elements.content.value = "";
+      socket.emit("CLIENT_SEND_TYPING", "hidden");
     }
   });
 }
@@ -23,6 +24,8 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
   // console.log(data);
   const myId = document.querySelector("[my-id]").getAttribute("my-id");
   const body = document.querySelector(".chat .inner-body");
+  const boxTyping = document.querySelector(".chat .inner-list-typing");
+
   const div = document.createElement("div");
   let htmlFullName = "";
   if (myId == data.userId) {
@@ -36,7 +39,8 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
       <div class="inner-content">${data.content}</div>
 
   `;
-  body.appendChild(div);
+  // body.appendChild(div);
+  body.insertBefore(div, boxTyping);
   bodyChat.scrollTop = bodyChat.scrollHeight;
 });
 
@@ -111,6 +115,7 @@ if (elemtListTyping) {
               </div>
       `;
         elemtListTyping.appendChild(boxTyping);
+        bodyChat.scrollTop = bodyChat.scrollHeight;
       }
     } else {
       const boxTypingRemove = elemtListTyping.querySelector(
