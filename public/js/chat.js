@@ -65,6 +65,18 @@ if (buttonIcon) {
   };
 }
 // end emoji picker
+// ===============================================
+// show typing
+var timeOut;
+const showTyping = () => {
+  socket.emit("CLIENT_SEND_TYPING", "show");
+  clearTimeout(timeOut);
+  // set khi dừng gõ
+  timeOut = setTimeout(() => {
+    socket.emit("CLIENT_SEND_TYPING", "hidden");
+  }, 3000);
+};
+// end show typing
 
 //  insert emoji to input
 const emojiPicker = document.querySelector("emoji-picker");
@@ -77,18 +89,12 @@ if (emojiPicker) {
 
     const icon = e.detail.unicode;
     inputChat.value = inputChat.value + icon;
+    showTyping();
   });
   // input keyup
-  var timeOut;
   inputChat.addEventListener("keyup", () => {
-    socket.emit("CLIENT_SEND_TYPING", "show");
-    clearTimeout(timeOut);
-    // set khi dừng gõ
-    timeOut = setTimeout(() => {
-      socket.emit("CLIENT_SEND_TYPING", "hidden");
-    }, 3000);
+    showTyping();
   });
-
   // end input keyup
 }
 // end insert emoji to input
