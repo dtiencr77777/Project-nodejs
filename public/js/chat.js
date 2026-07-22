@@ -14,9 +14,13 @@ if (formSendData) {
   formSendData.addEventListener("submit", (e) => {
     e.preventDefault();
     const content = e.target.elements.content.value;
+    const images = upload.cachedFileArray;
     console.log(content);
-    if (content) {
-      socket.emit("CLIENT_SEND_MESSAGE", content);
+    if (content || images.length > 0) {
+      socket.emit("CLIENT_SEND_MESSAGE", {
+        content: content,
+        images: images,
+      });
       e.target.elements.content.value = "";
       socket.emit("CLIENT_SEND_TYPING", "hidden");
     }
