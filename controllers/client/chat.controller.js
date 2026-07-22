@@ -9,11 +9,12 @@ module.exports.index = async (req, res) => {
   _io.once("connection", (socket) => {
     // console.log("a user connected", socket.id);
     // " bỏ on dùng once thì chỉ load 1 lần, còn on thì load nhiều lần"
-    socket.on("CLIENT_SEND_MESSAGE", async (content) => {
+    socket.on("CLIENT_SEND_MESSAGE", async (data) => {
       // lưu vào database
       const chat = new Chat({
         user_id: userId,
-        content: content,
+        content: data.content,
+        images: data.images,
       });
       await chat.save();
       //  trả data về cho client
