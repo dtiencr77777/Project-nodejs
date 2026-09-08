@@ -128,3 +128,14 @@ if (dataUsersAccept) {
 }
 
 // END SERVER_RETURN_INFO_ACCEPT_FRIEND
+
+//  server return user id cancel friend)
+socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
+  const userIdA = data.userIdA;
+  const boxUserRemove = document.querySelector(`[user-id="${userIdA}"]`);
+  if (boxUserRemove) {
+    const dataUsersAccept = document.querySelector("[data-users-accept]");
+    dataUsersAccept.removeChild(boxUserRemove);
+  }
+});
+// end server return user id cancel friend
