@@ -105,6 +105,12 @@ module.exports = (res) => {
         userId: userId,
         lengthAcceptFriends: lengthAcceptFriends,
       });
+
+      // lấy id của a trả về cho b khi b hủy lời mời kết bạn để xóa div của a trên client của b
+      socket.broadcast.emit("SERVER_RETURN_USER_ID_CANCEL_FRIEND", {
+        userIdB: userId,
+        userIdA: myUserId,
+      });
     });
 
     // 3 chức năng xóa lời mời kết bạn
