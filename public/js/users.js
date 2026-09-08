@@ -135,7 +135,10 @@ socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
   const boxUserRemove = document.querySelector(`[user-id="${userIdA}"]`);
   if (boxUserRemove) {
     const dataUsersAccept = document.querySelector("[data-users-accept]");
-    dataUsersAccept.removeChild(boxUserRemove);
+    const userIdB = badgeUserAccept.getAttribute("badge-user-accept");
+    if (userIdB == data.userIdB) {
+      dataUsersAccept.removeChild(boxUserRemove);
+    }
   }
 });
 // end server return user id cancel friend
