@@ -87,11 +87,12 @@ if (badgeUserAccept) {
 // END SERVER_RETURN_LECNGTH_ACCEPT_FRIENDS
 
 // SERVER_RETURN_INFO_ACCEPT_FRIEND
-const dataUsersAccept = document.querySelector("[data-users-accept]");
-if (dataUsersAccept) {
-  const userId = dataUsersAccept.getAttribute("data-users-accept");
+socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
+  //1/  trang lời mời đã nhận
 
-  socket.on("SERVER_RETURN_INFO_ACCEPT_FRIEND", (data) => {
+  const dataUsersAccept = document.querySelector("[data-users-accept]");
+  if (dataUsersAccept) {
+    const userId = dataUsersAccept.getAttribute("data-users-accept");
     if (userId == data.userId) {
       const div = document.createElement("div");
       div.classList.add("col-6");
@@ -124,8 +125,23 @@ if (dataUsersAccept) {
       acceptFriend(buttonAccept);
       // end bắt sự kiện chấp nhận lời mời kb
     }
-  });
-}
+  }
+  // end 1/  trang lời mời đã nhận
+
+  // 2 trang danh sách bạn bè
+  const dataUsersNotFriend = document.querySelector("[data-users-not-friend]");
+  if (dataUsersNotFriend) {
+    const userId = dataUsersNotFriend.getAttribute("data-users-not-friend");
+    if (userId === data.userId) {
+      const boxUserRemove = dataUsersNotFriend.querySelector(
+        `[user-id="${data.infoUserA._id}"]`,
+      );
+      if (boxUserRemove) {
+        dataUsersNotFriend.removeChild(boxUserRemove);
+      }
+    }
+  }
+});
 
 // END SERVER_RETURN_INFO_ACCEPT_FRIEND
 
