@@ -6,4 +6,6 @@ router.get("/not-friend", controler.notFriend);
 router.get("/request", controler.requestFriend);
 router.get("/accept", controler.accept);
 
+router.get("/friends", controler.friends);
+
 module.exports = router;
