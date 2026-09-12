@@ -98,7 +98,7 @@ module.exports.friends = async (req, res) => {
 
     status: "active",
     deleted: false,
-  }).select("id fullName");
+  }).select("id fullName avartar statusOnline");
   res.render("client/pages/users/friends", {
     title: "Friends",
     users: users,
