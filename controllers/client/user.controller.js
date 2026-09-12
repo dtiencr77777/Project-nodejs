@@ -107,6 +107,10 @@ module.exports.logout = async (req, res) => {
       statusOnline: "offline",
     },
   );
+  (_io.once("conection"),
+    (socket) => {
+      socket.brodcast.emit("SERVER_RETURN_USER_ONLINE", user.id);
+    });
   res.clearCookie("tokenUser");
   res.clearCookie("cartId");
   res.redirect("/");
