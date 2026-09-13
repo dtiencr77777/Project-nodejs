@@ -95,7 +95,10 @@ module.exports.loginPost = async (req, res) => {
     },
   );
   _on.once("connection", (socket) => {
-    socket.brodcast.emit("SERVER_RETURN_USER_ONLINE", user.id);
+    socket.brodcast.emit("SERVER_RETURN_USER_STATUS_ONLINE", {
+      userId: user.id,
+      status: "online",
+    });
   });
   res.redirect("/");
 };
