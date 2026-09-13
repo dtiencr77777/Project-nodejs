@@ -10,7 +10,7 @@ block main
         +box-head("Danh sách bạn bè")
 
 
-    .row(data-users-accept=user.id)
+    .row(data-users-friend-online=user.id)
       each user in users
         .col-6(user-id=user.id)
           div(class="box-user")
