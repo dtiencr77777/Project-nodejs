@@ -94,6 +94,9 @@ module.exports.loginPost = async (req, res) => {
       statusOnline: "online",
     },
   );
+  _on.once("connection", (socket) => {
+    socket.brodcast.emit("SERVER_RETURN_USER_ONLINE", user.id);
+  });
   res.redirect("/");
 };
 
