@@ -176,3 +176,9 @@ socket.on("SERVER_RETURN_USER_STATUS_ONLINE", (data) => {
 });
 
 //end server return user online
+
+// Delect browser or tab closing
+window.addEventListener("beforeunload", function (e) {
+  socket.emit("CLIENT_CLOSE_WEB", "user close web");
+});
+// end delete browser or tab closing
