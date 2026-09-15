@@ -12,3 +12,10 @@ if (showAlert) {
   });
 }
 //end show alert
+
+// Delect browser or tab closing
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  console.log("Browser or tab is closing.");
+});
+// end delete browser or tab closing
